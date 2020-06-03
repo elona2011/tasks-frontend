@@ -65,6 +65,7 @@ import {
   //   maxLength,
   between
 } from "vuelidate/lib/validators";
+const axios = require('axios');
 
 export default {
   name: "TaskPublish",
@@ -114,7 +115,7 @@ export default {
       this.$v.$touch();
 
       if (!this.$v.$invalid) {
-        this.saveUser();
+        axios
       }
     }
   }

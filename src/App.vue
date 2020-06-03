@@ -1,18 +1,13 @@
 <template>
   <div id="app">
-    <TaskPublish/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import TaskPublish from './components/TaskPublish.vue'
-
 export default {
-  name: 'App',
-  components: {
-    TaskPublish
-  }
-}
+  name: "App"
+};
 </script>
 
 <style>
