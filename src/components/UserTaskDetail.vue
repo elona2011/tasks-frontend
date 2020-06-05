@@ -8,7 +8,7 @@
         <div class="main-page" v-if="item.task_state==1">
           <md-card>
             <md-card-content>
-              {{item.task_type}}任务 {{getState(item.task_state)}}
+              <span style="font-size: 20px;color:red;">{{item.task_type}}任务 {{getState(item.task_state)}}</span>
               <br />链接：
               <span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>
@@ -23,11 +23,11 @@
         <div class="main-page" v-if="item.task_state==2">
           <md-card>
             <md-card-content>
-              审核中
+              <span style="font-size: 20px;color:red;">审核中</span>
               <br />
-              视频地址：{{item.task_url}}
+              任务类型：{{item.task_type}}
               <br />
-              {{item.task_type}}任务
+              视频地址：<span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>
           </md-card>
         </div>

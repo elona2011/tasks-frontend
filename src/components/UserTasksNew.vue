@@ -8,8 +8,12 @@
         <div class="main-page">
           <md-card v-for="item in items" :key="item.id">
             <md-card-content @click.native="viewTask(item)">
-              {{item.task_type}}任务：
-              <span style="color:red;">剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
+              <span style="font-size: 20px;">
+                {{item.task_type}}任务：
+                <span
+                  style="color:red;"
+                >剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
+              </span>
               <br />任务链接：
               <span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>

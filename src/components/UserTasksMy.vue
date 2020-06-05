@@ -8,7 +8,9 @@
         <div class="main-page">
           <md-card v-for="item in items" :key="item.id">
             <md-card-content @click.native="viewTask(item)">
-              {{item.task_type}}任务 {{getState(item.task_state)}}
+              <span style="font-size: 20px;">{{item.task_type}}任务</span>
+              <br />
+              状态：<span style="color:red;">{{getState(item.task_state)}}</span>
               <br />链接：
               <span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>

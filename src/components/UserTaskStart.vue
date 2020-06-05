@@ -8,9 +8,9 @@
         <div class="main-page">
           <md-card>
             <md-card-content>
-              视频地址：{{item.task_url}}
+              视频地址：<span style="color:#448aff;">{{item.task_url}}</span>
               <br />
-              {{item.task_type}}任务 剩余{{item.task_num-item.task_used_num-item.task_finish_num}}
+              {{item.task_type}}任务 <span style="color:red;">剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
             </md-card-content>
           </md-card>
           <md-button
