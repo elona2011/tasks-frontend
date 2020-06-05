@@ -18,7 +18,7 @@
             type="number"
             id="follow"
             name="follow"
-            autocomplete="follow"
+            autocomplete="off"
             v-model="form.follow"
             :disabled="sending"
           />
@@ -31,7 +31,7 @@
             type="number"
             id="comment"
             name="comment"
-            autocomplete="comment"
+            autocomplete="off"
             v-model="form.comment"
             :disabled="sending"
           />
@@ -44,7 +44,7 @@
             type="number"
             id="thumb"
             name="thumb"
-            autocomplete="thumb"
+            autocomplete="off"
             v-model="form.thumb"
             :disabled="sending"
           />
@@ -65,7 +65,7 @@ import {
   //   maxLength,
   between
 } from "vuelidate/lib/validators";
-const axios = require('axios');
+const axios = require("axios");
 
 export default {
   name: "TaskPublish",
@@ -75,7 +75,7 @@ export default {
       videoUrl: null,
       follow: null,
       comment: null,
-      thumb:null
+      thumb: null
     },
     userSaved: false,
     sending: false,
@@ -98,7 +98,7 @@ export default {
       thumb: {
         required,
         between: between(0, 10000)
-      },
+      }
     }
   },
   methods: {
@@ -116,6 +116,21 @@ export default {
 
       if (!this.$v.$invalid) {
         axios
+          .post("/api/publish", {
+            videoUrl: this.form.videoUrl,
+            follow: this.form.follow,
+            comment: this.form.comment,
+            thumb: this.form.thumb,
+            token: this.$route.params.token
+          })
+          .then(res => {
+            if (res.data.code == 0) {
+              this.$router.push({
+                name: "publishsuccess",
+                params: { token: this.$route.params.token }
+              });
+            }
+          });
       }
     }
   }
