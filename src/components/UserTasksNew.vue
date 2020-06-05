@@ -8,9 +8,10 @@
         <div class="main-page">
           <md-card v-for="item in items" :key="item.id">
             <md-card-content @click.native="viewTask(item)">
-              {{item.task_type}}任务 剩余{{item.task_num-item.task_used_num-item.task_finish_num}}
-              <br />
-              任务地址：{{item.task_url}}
+              {{item.task_type}}任务：
+              <span style="color:red;">剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
+              <br />任务链接：
+              <span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>
           </md-card>
         </div>
@@ -73,6 +74,8 @@ export default {
 }
 .md-card {
   margin-bottom: 10px;
+  word-break: break-all;
+  text-align: left;
 }
 .main-scroll {
   height: 100vh;

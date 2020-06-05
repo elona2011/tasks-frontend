@@ -9,8 +9,8 @@
         <md-field :class="getValidationClass('videoUrl')">
           <label for="videoUrl">视频中复制链接</label>
           <md-textarea name="videoUrl" v-model="form.videoUrl" :disabled="sending"></md-textarea>
-          <span class="md-error" v-if="!$v.form.videoUrl.required">请填写视频地址</span>
-          <span class="md-error" v-if="!$v.form.videoUrl.url">填写错误</span>
+          <span class="md-error" v-if="!$v.form.videoUrl.required">请复制视频地址</span>
+          <span class="md-error" v-if="!$v.form.videoUrl.dy_regex">请复制视频地址</span>
         </md-field>
         <md-field :class="getValidationClass('follow')">
           <label for="follow">关注数</label>
@@ -59,13 +59,14 @@
 
 <script>
 import { validationMixin } from "vuelidate";
-import {
-  required,
-  url,
-  //   maxLength,
-  between
-} from "vuelidate/lib/validators";
+import { required, between } from "vuelidate/lib/validators";
 const axios = require("axios");
+const dy_regex = v => {
+  console.log(v);
+  let r = /.+http.+\/\/.+\/.+/.test(v);
+  console.log(r)
+  return r;
+};
 
 export default {
   name: "TaskPublish",
@@ -85,7 +86,7 @@ export default {
     form: {
       videoUrl: {
         required,
-        url
+        dy_regex
       },
       follow: {
         required,

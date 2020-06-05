@@ -9,7 +9,8 @@
           <md-card v-for="item in items" :key="item.id">
             <md-card-content @click.native="viewTask(item)">
               {{item.task_type}}任务 {{getState(item.task_state)}}
-              <br />{{item.task_url}}
+              <br />链接：
+              <span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>
           </md-card>
         </div>
@@ -57,21 +58,21 @@ export default {
         params: { token: this.$route.params.token }
       });
     },
-    getState(s){
-      switch(s){
+    getState(s) {
+      switch (s) {
         case 1:
-          return '进行中'
+          return "进行中";
         case 2:
-          return '审核中'
+          return "审核中";
         case 3:
-          return '已完成'
+          return "已完成";
         case 4:
-          return '失败'
+          return "失败";
       }
-      return ''
+      return "";
     },
     viewTask(item) {
-        this.$router.push({
+      this.$router.push({
         name: "UserTaskDetail",
         params: { id: item.id, token: this.$route.params.token }
       });
@@ -91,6 +92,8 @@ export default {
 }
 .md-card {
   margin-bottom: 10px;
+  word-break: break-all;
+  text-align: left;
 }
 .main-scroll {
   height: 100vh;

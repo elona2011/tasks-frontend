@@ -4,20 +4,22 @@
       <md-toolbar>
         <h3 class="md-title">任务详情</h3>
       </md-toolbar>
-      <div class="main-page">
-        <md-card>
-          <md-card-content>
-            视频地址：{{item.task_url}}
-            <br />
-            {{item.task_type}}任务 剩余{{item.task_num-item.task_used_num-item.task_finish_num}}
-          </md-card-content>
-        </md-card>
-        <md-button
-          id="copied"
-          class="md-raised md-primary full-width"
-          :data-clipboard-text="item.task_url"
-        >点击复制地址</md-button>
-        <md-button class="md-raised md-primary full-width" @click="startTask">开始任务</md-button>
+      <div class="main-scroll">
+        <div class="main-page">
+          <md-card>
+            <md-card-content>
+              视频地址：{{item.task_url}}
+              <br />
+              {{item.task_type}}任务 剩余{{item.task_num-item.task_used_num-item.task_finish_num}}
+            </md-card-content>
+          </md-card>
+          <md-button
+            id="copied"
+            class="md-raised md-primary full-width"
+            :data-clipboard-text="item.task_url"
+          >点击复制地址</md-button>
+          <md-button class="md-raised md-primary full-width" @click="startTask">开始任务</md-button>
+        </div>
       </div>
       <md-bottom-bar md-sync-route class="bottom-bar">
         <md-bottom-bar-item
@@ -92,6 +94,12 @@ export default {
 }
 .md-card {
   margin-bottom: 10px;
+  word-break: break-all;
+  text-align: left;
+}
+.main-scroll {
+  height: 100vh;
+  overflow: scroll;
 }
 .main-page {
   margin: 20px;
@@ -103,6 +111,7 @@ export default {
 }
 .phone-viewport {
   /* width: 322px; */
+  height: 100vh;
   min-height: 100%;
   display: flex;
   flex-direction: column;
