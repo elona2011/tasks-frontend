@@ -1,27 +1,31 @@
 <template>
   <div style="height:100vh;">
     <div class="phone-viewport">
-      <user-title title="我的任务"/>
+      <user-title title="我的发布" />
       <div class="main-scroll">
         <div class="main-page">
           <md-card v-for="item in items" :key="item.id">
-            <md-card-content @click.native="viewTask(item)">
-              <span style="font-size: 20px;">{{item.task_type}}任务</span>
-              <br />
-              状态：<span style="color:red;">{{getState(item.task_state)}}</span>
+            <md-card-content @click.native="viewPublish(item)">
+              状态：
+              <span style="color:red;">{{getState(item.state)}}</span>
               <br />链接：
-              <span style="color:#448aff;">{{item.task_url}}</span>
+              <span style="color:#448aff;">{{item.url}}</span>
+              <br />完成：
+              <span style="margin-right:10px;">关注{{item.follow_finish_num}}/{{item.follow_num}}</span>
+              <span style="margin-right:10px;">点赞{{item.thumb_finish_num}}/{{item.thumb_num}}</span>
+              <span style="margin-right:10px;">评论{{item.comment_finish_num}}/{{item.comment_num}}</span>
+              <md-progress-bar md-mode="determinate" :md-value="getProgress(item)"></md-progress-bar>
             </md-card-content>
           </md-card>
         </div>
       </div>
-      <user-menu />
+      <publish-menu />
     </div>
   </div>
 </template>
 
 <script>
-import { mytasks } from "../api/userInterface";
+import { publishMy } from "../api/publishInterface";
 
 export default {
   name: "TaskPublishSuccess",
@@ -29,7 +33,7 @@ export default {
     items: []
   }),
   mounted() {
-    mytasks(this)
+    publishMy(this);
   },
   methods: {
     publishAgain() {
@@ -43,19 +47,25 @@ export default {
         case 1:
           return "进行中";
         case 2:
-          return "审核中";
-        case 3:
           return "已完成";
-        case 4:
-          return "失败";
+        case 3:
+          return "暂停中";
       }
       return "";
     },
-    viewTask(item) {
+    viewPublish(item) {
       this.$router.push({
-        name: "UserTaskDetail",
+        name: "PublishDetail",
         params: { id: item.id, token: this.$route.params.token }
       });
+    },
+    getProgress(item) {
+      return (
+        (item.follow_finish_num +
+          item.thumb_finish_num +
+          item.comment_finish_num) /
+        (item.follow_num + item.thumb_num + item.comment_num)
+      );
     }
   }
 };
@@ -63,6 +73,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.md-progress-bar {
+  margin-top: 10px;
+}
 .md-content {
   width: 100%;
   height: 150px;

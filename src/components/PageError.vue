@@ -1,9 +1,10 @@
 <template>
-  <p>Page not found</p>
+  <p>{{$route.params.errorString}}</p>
 </template>
 
 <script>
 export default {
-  name: "404"
+  name: "PageError",
+
 };
 </script>

@@ -1,14 +1,14 @@
 <template>
   <div style="height:100vh;">
     <div class="phone-viewport">
-      <md-toolbar>
-        <h3 class="md-title">任务详情</h3>
-      </md-toolbar>
+      <user-title title="任务详情"/>
       <div class="main-scroll">
         <div class="main-page" v-if="item.task_state==1">
           <md-card>
             <md-card-content>
-              <span style="font-size: 20px;color:red;">{{item.task_type}}任务 {{getState(item.task_state)}}</span>
+              <span
+                style="font-size: 20px;color:red;"
+              >{{item.task_type}}任务 {{getState(item.task_state)}}</span>
               <br />链接：
               <span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>
@@ -26,32 +26,19 @@
               <span style="font-size: 20px;color:red;">审核中</span>
               <br />
               任务类型：{{item.task_type}}
-              <br />
-              视频地址：<span style="color:#448aff;">{{item.task_url}}</span>
+              <br />视频地址：
+              <span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>
           </md-card>
         </div>
       </div>
-
-      <md-bottom-bar md-sync-route class="bottom-bar">
-        <md-bottom-bar-item
-          :to="{name: 'UserTasksNew',params:{token:$route.params.token}}"
-          exact
-          md-label="新任务"
-          md-icon="/fiber_new-black-24dp.svg"
-        ></md-bottom-bar-item>
-        <md-bottom-bar-item
-          :to="{name: 'UserTasksMy',params:{token:$route.params.token}}"
-          md-label="我的任务"
-          md-icon="/favorite-24px.svg"
-        ></md-bottom-bar-item>
-      </md-bottom-bar>
+      <user-menu />
     </div>
   </div>
 </template>
 
 <script>
-const axios = require("axios");
+import { usertask, updatetask } from "../api/userInterface";
 const ClipboardJS = require("clipboard");
 
 export default {
@@ -63,33 +50,8 @@ export default {
   }),
   mounted() {
     new ClipboardJS("#copied");
-
-    axios
-      .post("/api/usertask", {
-        id: this.$route.params.id,
-        token: this.$route.params.token
-      })
-      .then(res => {
-        if (res.data.code == 0) {
-          this.item = res.data.result;
-        }
-      });
+    usertask(this);
   },
-  // computed: {
-  //   state() {
-  //     switch (this.item.task_state) {
-  //       case 1:
-  //         return "进行中";
-  //       case 2:
-  //         return "审核中";
-  //       case 3:
-  //         return "已完成";
-  //       case 4:
-  //         return "失败";
-  //     }
-  //     return "";
-  //   }
-  // },
   methods: {
     viewTask() {
       console.log(11);
@@ -112,16 +74,7 @@ export default {
       return "";
     },
     updateTask() {
-      axios
-        .post("/api/updatetask", {
-          id: this.$route.params.id,
-          token: this.$route.params.token
-        })
-        .then(res => {
-          if (res.data.code == 0) {
-            this.item = res.data.result;
-          }
-        });
+      updatetask(this);
     }
   }
 };

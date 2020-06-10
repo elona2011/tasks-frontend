@@ -6,7 +6,10 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  created() {
+    document.title = "评赞能手";
+  }
 };
 </script>
 

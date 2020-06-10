@@ -25,7 +25,7 @@ export default {
     },
     viewTask() {
         this.$router.push({
-        name: "UserTasksNew",
+        name: "PublishMy",
         params: { token: this.$route.params.token }
       });
     }

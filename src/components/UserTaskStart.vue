@@ -1,16 +1,16 @@
 <template>
   <div style="height:100vh;">
     <div class="phone-viewport">
-      <md-toolbar>
-        <h3 class="md-title">任务详情</h3>
-      </md-toolbar>
+      <user-title title="任务详情"/>
       <div class="main-scroll">
         <div class="main-page">
           <md-card>
             <md-card-content>
-              视频地址：<span style="color:#448aff;">{{item.task_url}}</span>
+              视频地址：
+              <span style="color:#448aff;">{{item.task_url}}</span>
               <br />
-              {{item.task_type}}任务 <span style="color:red;">剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
+              {{item.task_type}}任务
+              <span style="color:red;">剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
             </md-card-content>
           </md-card>
           <md-button
@@ -21,25 +21,13 @@
           <md-button class="md-raised md-primary full-width" @click="startTask">开始任务</md-button>
         </div>
       </div>
-      <md-bottom-bar md-sync-route class="bottom-bar">
-        <md-bottom-bar-item
-          :to="{name: 'UserTasksNew',params:{token:$route.params.token}}"
-          exact
-          md-label="新任务"
-          md-icon="/fiber_new-black-24dp.svg"
-        ></md-bottom-bar-item>
-        <md-bottom-bar-item
-          :to="{name: 'UserTasksMy',params:{token:$route.params.token}}"
-          md-label="我的任务"
-          md-icon="/favorite-24px.svg"
-        ></md-bottom-bar-item>
-      </md-bottom-bar>
+      <user-menu />
     </div>
   </div>
 </template>
 
 <script>
-const axios = require("axios");
+import { gettask, starttask } from "../api/userInterface";
 const ClipboardJS = require("clipboard");
 
 export default {
@@ -49,35 +37,11 @@ export default {
   }),
   mounted() {
     new ClipboardJS("#copied");
-
-    axios
-      .post("/api/gettask", {
-        id: this.$route.params.id,
-        token: this.$route.params.token
-      })
-      .then(res => {
-        if (res.data.code == 0) {
-          this.item = res.data.result;
-        }
-      });
+    gettask(this);
   },
   methods: {
     startTask() {
-      axios
-        .post("/api/starttask", {
-          id: this.$route.params.id,
-          task_type: this.item.task_type,
-          task_state: 1,
-          token: this.$route.params.token
-        })
-        .then(res => {
-          if (res.data.code == 0) {
-            this.$router.push({
-              name: "UserTaskDetail",
-              params: { id: res.data.result, token: this.$route.params.token }
-            });
-          }
-        });
+      starttask(this);
     }
   }
 };
