@@ -7,7 +7,7 @@ axios.interceptors.response.use(function (response) {
     if (response.data.code != 0) {
         router.push({
             name: 'PageError',
-            params: { errorString: response.data.result + '' }
+            params: { errorString: response.data.code + ',' + response.data.result }
         })
         throw new Error('response.data.result')
     }
