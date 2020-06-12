@@ -64,7 +64,7 @@ export default {
         (item.follow_finish_num +
           item.thumb_finish_num +
           item.comment_finish_num) /
-        (item.follow_num + item.thumb_num + item.comment_num)
+        (item.follow_num + item.thumb_num + item.comment_num)*100
       );
     }
   }

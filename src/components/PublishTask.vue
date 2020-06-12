@@ -1,7 +1,7 @@
 <template>
   <div style="height:100vh;">
     <div class="phone-viewport">
-      <user-title title="任务发布" />
+      <user-title title="发布新任务" />
 
       <div class="main-page">
         <form novalidate class="md-layout" @submit.prevent="validateUser">

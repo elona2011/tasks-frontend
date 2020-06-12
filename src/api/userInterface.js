@@ -17,8 +17,6 @@ export function starttask(self) {
     axios
         .post("/api/starttask", {
             id: self.$route.params.id,
-            task_type: self.item.task_type,
-            task_state: 1,
             token: self.$route.params.token
         })
         .then(res => {
@@ -81,4 +79,25 @@ export function updatetask(self) {
         });
 }
 
+export function getUserMoney(self) {
+    return axios
+        .post("/api/getUserMoney", {
+            token: self.$route.params.token
+        })
+}
 
+export function getUserPay(token, money_pay) {
+    return axios
+        .post("/api/getUserPay", {
+            token,
+            money_pay
+        })
+}
+
+export function getUserPayDetail(token, id) {
+    return axios
+        .post("/api/getUserPayDetail", {
+            token,
+            id
+        })
+}

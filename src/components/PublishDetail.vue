@@ -10,7 +10,7 @@
             <md-textarea name="videoUrl" v-model="item.url" :disabled="true"></md-textarea>
           </md-field>
           <md-field>
-            <label for="follow">关注数</label>
+            <label for="follow">关注完成</label>
             <md-input
               id="follow"
               name="follow"
@@ -20,7 +20,7 @@
             />
           </md-field>
           <md-field>
-            <label for="comment">评论数</label>
+            <label for="comment">评论完成</label>
             <md-input
               id="comment"
               name="comment"
@@ -30,7 +30,7 @@
             />
           </md-field>
           <md-field>
-            <label for="thumb">点赞数</label>
+            <label for="thumb">点赞完成</label>
             <md-input
               id="thumb"
               name="thumb"

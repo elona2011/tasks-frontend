@@ -1,7 +1,7 @@
 <template>
   <div style="height:100vh;">
     <div class="phone-viewport">
-      <user-title title="新任务"/>
+      <user-title title="新任务" />
       <div class="main-scroll">
         <div class="main-page">
           <md-card v-for="item in items" :key="item.id">
@@ -10,11 +10,12 @@
                 {{item.task_type}}任务：
                 <span
                   style="color:red;"
-                >剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
+                >剩余{{item.task_num-item.task_used_num}}</span>
               </span>
               <br />任务链接：
               <span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>
+            <div class="money">+0.1元</div>
           </md-card>
         </div>
       </div>
@@ -32,7 +33,7 @@ export default {
     items: []
   }),
   mounted() {
-    newtasks(this)
+    newtasks(this);
   },
   methods: {
     viewTask(item) {
@@ -47,6 +48,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.money {
+  width: 70px;
+  font-size: 20px;
+  color: red;
+  align-self: center;
+}
 .md-content {
   width: 100%;
   height: 150px;
@@ -55,9 +62,12 @@ export default {
   align-items: center;
 }
 .md-card {
+  padding-right: 10px;
   margin-bottom: 10px;
   word-break: break-all;
   text-align: left;
+  display: flex;
+  justify-content: space-around;
 }
 .main-scroll {
   height: 100vh;

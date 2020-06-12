@@ -29,6 +29,19 @@
               <br />视频地址：
               <span style="color:#448aff;">{{item.task_url}}</span>
             </md-card-content>
+            <div class="money">+0.1元</div>
+          </md-card>
+        </div>
+        <div class="main-page" v-if="item.task_state==3">
+          <md-card>
+            <md-card-content>
+              <span style="font-size: 20px;color:red;">已完成</span>
+              <br />
+              任务类型：{{item.task_type}}
+              <br />视频地址：
+              <span style="color:#448aff;">{{item.task_url}}</span>
+            </md-card-content>
+            <div class="money">+0.1元</div>
           </md-card>
         </div>
       </div>
@@ -82,6 +95,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.money {
+  width: 70px;
+  font-size: 20px;
+  color: red;
+  align-self: center;
+}
 .md-content {
   width: 100%;
   height: 150px;
@@ -90,9 +109,12 @@ export default {
   align-items: center;
 }
 .md-card {
+  padding-right: 10px;
   margin-bottom: 10px;
   word-break: break-all;
   text-align: left;
+  display: flex;
+  justify-content: space-around;
 }
 .main-scroll {
   height: 100vh;

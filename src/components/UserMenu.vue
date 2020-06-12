@@ -9,8 +9,8 @@
     ></md-bottom-bar-item>
     <md-bottom-bar-item
       class="my-menu"
-      :to="{name: 'UserTasksMy',params:{token:$route.params.token}}"
-      md-label="我的任务"
+      :to="{name: 'UserMy',params:{token:$route.params.token}}"
+      md-label="我的"
       md-icon="/favorite-24px.svg"
     ></md-bottom-bar-item>
   </md-bottom-bar>
