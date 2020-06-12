@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: "UserMenu"
+  name: "PublishMenu"
 };
 </script>
 

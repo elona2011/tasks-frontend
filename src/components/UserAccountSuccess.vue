@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "TaskPublishSuccess",
+  name: "UserAccountSuccess",
   data: () => ({}),
   methods: {
     publishAgain() {

@@ -45,7 +45,7 @@ import {
 const axios = require("axios");
 
 export default {
-  name: "TaskPublish",
+  name: "UserAccount",
   mixins: [validationMixin],
   data: () => ({
     form: {

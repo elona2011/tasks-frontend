@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "TaskPublishSuccess",
+  name: "PublishTaskSuccess",
   data: () => ({}),
   methods: {
     publishAgain() {

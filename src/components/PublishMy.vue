@@ -28,7 +28,7 @@
 import { publishMy } from "../api/publishInterface";
 
 export default {
-  name: "TaskPublishSuccess",
+  name: "PublishMy",
   data: () => ({
     items: []
   }),

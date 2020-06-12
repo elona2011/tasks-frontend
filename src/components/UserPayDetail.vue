@@ -8,8 +8,6 @@
             <md-card-header>
               <div class="md-title red">{{result}}</div>
             </md-card-header>
-
-            <!-- <md-card-content>由于微信官方限制，每天最多提现1次，每次最少1元。余额不足1元时，不能提现。</md-card-content> -->
           </md-card>
         </div>
       </div>
@@ -22,7 +20,7 @@
 import { getUserPayDetail } from "../api/userInterface";
 
 export default {
-  name: "UserPay",
+  name: "UserPayDetail",
   data: () => ({
     result: null
   }),

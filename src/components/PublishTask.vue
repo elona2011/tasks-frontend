@@ -68,7 +68,7 @@ const dy_regex = v => {
 };
 
 export default {
-  name: "TaskPublish",
+  name: "PublishTask",
   mixins: [validationMixin],
   data: () => ({
     form: {

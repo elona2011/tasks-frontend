@@ -54,7 +54,6 @@
 import { getUserMoney, getUserPay } from "../api/userInterface";
 import { validationMixin } from "vuelidate";
 import { required, between } from "vuelidate/lib/validators";
-// const axios = require("axios");
 
 export default {
   name: "UserPay",

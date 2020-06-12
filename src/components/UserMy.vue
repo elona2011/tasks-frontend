@@ -37,7 +37,7 @@
 import { getUserMoney } from "../api/userInterface";
 
 export default {
-  name: "TaskPublishSuccess",
+  name: "UserMy",
   data: () => ({
     item: {
       money: null,
