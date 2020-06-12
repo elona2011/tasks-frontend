@@ -1,16 +1,19 @@
 <template>
   <md-toolbar>
     <h3 class="md-title">{{title}}</h3>
-    <md-button class="md-primary" @click="switchPosition">切换身份</md-button>
+    <md-button class="md-primary" @click="switchPosition" v-if="isShow">切换身份</md-button>
   </md-toolbar>
 </template>
 
 <script>
-
 export default {
   name: "UserTitle",
   props: {
-    title: String
+    title: String,
+    isShow: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     switchPosition() {
@@ -20,7 +23,7 @@ export default {
           params: { token: this.$route.params.token }
         });
       } else {
-          this.$router.push({
+        this.$router.push({
           name: "UserTasksNew",
           params: { token: this.$route.params.token }
         });
