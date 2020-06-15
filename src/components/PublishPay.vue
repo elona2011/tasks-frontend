@@ -99,7 +99,6 @@ export default {
               appId,
               timeStamp,
               nonceStr,
-              package1,
               signType,
               paySign
             } = res.data.result;
@@ -109,7 +108,7 @@ export default {
                 appId, //公众号名称，由商户传入
                 timeStamp, //时间戳，自1970年以来的秒数
                 nonceStr, //随机串
-                package: package1,
+                package: res.data.result.package,
                 signType, //微信签名方式：
                 paySign //微信签名
               },
