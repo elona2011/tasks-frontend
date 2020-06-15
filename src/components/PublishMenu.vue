@@ -9,20 +9,20 @@
           :to="{name: 'PublishNew',params:{token:$route.params.token}}"
           exact
           md-label="发布任务"
-          md-icon="/fiber_new-black-24dp.svg"
+          md-icon="fiber_new-black-24dp.svg"
         ></md-bottom-bar-item>
         <md-bottom-bar-item
           class="my-menu"
           :to="{name: 'PublishPay',params:{token:$route.params.token}}"
           exact
           md-label="充值"
-          md-icon="/monetization_on-black-24dp.svg"
+          md-icon="monetization_on-black-24dp.svg"
         ></md-bottom-bar-item>
         <md-bottom-bar-item
           class="my-menu"
           :to="{name: 'PublishMy',params:{token:$route.params.token}}"
           md-label="我的发布"
-          md-icon="/favorite-24px.svg"
+          md-icon="favorite-24px.svg"
         ></md-bottom-bar-item>
       </md-bottom-bar>
     </div>

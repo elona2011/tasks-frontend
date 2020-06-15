@@ -11,13 +11,13 @@
       <md-card>
         <md-list>
           <md-list-item>
-            <md-icon md-src="/attach_money-black-24dp.svg"></md-icon>
+            <md-icon md-src="attach_money-black-24dp.svg"></md-icon>
             <span class="md-list-item-text">余额</span>
             <span class="md-list-item-text red">{{item.money/100}} 元</span>
             <md-icon></md-icon>
           </md-list-item>
           <md-list-item>
-            <md-icon md-src="/monetization_on-black-24dp.svg"></md-icon>
+            <md-icon md-src="monetization_on-black-24dp.svg"></md-icon>
             <span class="md-list-item-text">提现</span>
             <span class="md-list-item-text red">{{item.money_pay/100}} 元</span>
             <md-icon></md-icon>
