@@ -1,14 +1,8 @@
 <template>
-  <div>
-    <md-toolbar>
-      <h3 class="md-title">任务发布</h3>
-    </md-toolbar>
-
-    <div class="main-page">
-      <md-content>提交成功</md-content>
-      <md-button class="md-raised md-primary full-width" @click="publishAgain">再发一个</md-button>
-      <md-button class="md-raised md-primary full-width" @click="viewTask">查看任务</md-button>
-    </div>
+  <div class="main-page">
+    <md-content>提交成功</md-content>
+    <md-button class="md-raised md-primary full-width" @click="publishAgain">再发一个</md-button>
+    <md-button class="md-raised md-primary full-width" @click="viewTask">查看任务</md-button>
   </div>
 </template>
 
@@ -24,7 +18,7 @@ export default {
       });
     },
     viewTask() {
-        this.$router.push({
+      this.$router.push({
         name: "PublishMy",
         params: { token: this.$route.params.token }
       });

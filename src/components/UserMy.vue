@@ -1,40 +1,34 @@
 <template>
-  <div style="height:100vh;">
-    <div class="phone-viewport">
-      <user-title title="我的" />
-      <div class="main-scroll">
-        <div class="main-page">
-          <md-list>
-            <md-list-item>
-              <md-icon md-src="/attach_money-black-24dp.svg"></md-icon>
-              <span class="md-list-item-text">余额</span>
-              <span class="md-list-item-text red">{{item.money/100}} 元</span>
-              <md-icon></md-icon>
-            </md-list-item>
-            <md-list-item @click="viewMyPay">
-              <md-icon md-src="/monetization_on-black-24dp.svg"></md-icon>
-              <span class="md-list-item-text">提现</span>
-              <span class="md-list-item-text red">{{item.money_pay/100}} 元</span>
-              <md-icon md-src="/navigate_next-black-24dp.svg"></md-icon>
-            </md-list-item>
-          </md-list>
-          <md-list>
-            <md-list-item @click="viewMyTask">
-              <md-icon md-src="/fact_check-black-24dp.svg"></md-icon>
-              <span class="md-list-item-text">我的任务</span>
-              <span class="md-list-item-text"></span>
-              <md-icon md-src="/navigate_next-black-24dp.svg"></md-icon>
-            </md-list-item>
-          </md-list>
-        </div>
-      </div>
-      <user-menu />
+  <div class="main-scroll">
+    <div class="main-page">
+      <md-list>
+        <md-list-item>
+          <md-icon md-src="/attach_money-black-24dp.svg"></md-icon>
+          <span class="md-list-item-text">余额</span>
+          <span class="md-list-item-text red">{{item.money/100}} 元</span>
+          <md-icon></md-icon>
+        </md-list-item>
+        <md-list-item @click="viewMyPay">
+          <md-icon md-src="/monetization_on-black-24dp.svg"></md-icon>
+          <span class="md-list-item-text">提现</span>
+          <span class="md-list-item-text red">{{item.money_pay/100}} 元</span>
+          <md-icon md-src="/navigate_next-black-24dp.svg"></md-icon>
+        </md-list-item>
+      </md-list>
+      <md-list>
+        <md-list-item @click="viewMyTask">
+          <md-icon md-src="/fact_check-black-24dp.svg"></md-icon>
+          <span class="md-list-item-text">我的任务</span>
+          <span class="md-list-item-text"></span>
+          <md-icon md-src="/navigate_next-black-24dp.svg"></md-icon>
+        </md-list-item>
+      </md-list>
     </div>
   </div>
 </template>
 
 <script>
-import { getUserMoney } from "../api/userInterface";
+import { getUserMoney } from "../api/pay";
 
 export default {
   name: "UserMy",

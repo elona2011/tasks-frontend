@@ -5,6 +5,7 @@ axios.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     if (response.data.code != 0) {
+        debugger
         router.push({
             name: 'PageError',
             params: { errorString: response.data.code + ',' + response.data.result }
@@ -15,6 +16,7 @@ axios.interceptors.response.use(function (response) {
 }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
+    debugger
     router.push({
         name: 'PageError',
         params: { errorString: error + '' }

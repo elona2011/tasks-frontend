@@ -12,7 +12,8 @@ export default {
     title: String,
     isShow: {
       type: Boolean,
-      default: false
+      default: true
+    //   default: false
     }
   },
   methods: {

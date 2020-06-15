@@ -3,9 +3,9 @@ import App from './App.vue'
 import { MdButton, MdContent, MdToolbar, MdField, MdCard, MdBottomBar, MdProgress, MdList ,MdIcon} from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
-import UserMenu from './components/UserMenu'
-import UserTitle from './components/UserTitle'
-import PublishMenu from './components/PublishMenu'
+// import UserMenu from './components/UserMenu'
+// import UserTitle from './components/UserTitle'
+// import PublishMenu from './components/PublishMenu'
 import { router } from "./routes";
 import VueRouter from 'vue-router'
 
@@ -21,9 +21,9 @@ Vue.use(MdIcon)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
-Vue.component('user-menu', UserMenu)
-Vue.component('user-title', UserTitle)
-Vue.component('publish-menu', PublishMenu)
+// Vue.component('user-menu', UserMenu)
+// Vue.component('user-title', UserTitle)
+// Vue.component('publish-menu', PublishMenu)
 
 new Vue({
   router,

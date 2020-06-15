@@ -1,25 +1,17 @@
 <template>
-  <div style="height:100vh;">
-    <div class="phone-viewport">
-      <user-title title="新任务" />
-      <div class="main-scroll">
-        <div class="main-page">
-          <md-card v-for="item in items" :key="item.id">
-            <md-card-content @click.native="viewTask(item)">
-              <span style="font-size: 20px;">
-                {{item.task_type}}任务：
-                <span
-                  style="color:red;"
-                >剩余{{item.task_num-item.task_used_num}}</span>
-              </span>
-              <br />任务链接：
-              <span style="color:#448aff;">{{item.task_url}}</span>
-            </md-card-content>
-            <div class="money">+0.1元</div>
-          </md-card>
-        </div>
-      </div>
-      <user-menu />
+  <div class="main-scroll">
+    <div class="main-page">
+      <md-card v-for="item in items" :key="item.id">
+        <md-card-content @click.native="viewTask(item)">
+          <span style="font-size: 20px;">
+            {{item.task_type}}任务：
+            <span style="color:red;">剩余{{item.task_num-item.task_used_num}}</span>
+          </span>
+          <br />任务链接：
+          <span style="color:#448aff;">{{item.task_url}}</span>
+        </md-card-content>
+        <div class="money">+0.1元</div>
+      </md-card>
     </div>
   </div>
 </template>
@@ -82,18 +74,7 @@ export default {
   width: 100%;
   margin: 10px 0;
 }
-.phone-viewport {
-  /* width: 322px; */
-  height: 100vh;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid rgba(#000, 0.26);
-  background: rgba(#000, 0.06);
-}
+
 .bottom-bar {
   flex-shrink: 0;
 }

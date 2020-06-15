@@ -1,51 +1,45 @@
 <template>
-  <div style="height:100vh;">
-    <div class="phone-viewport">
-      <user-title title="任务详情"/>
-      <div class="main-scroll">
-        <div class="main-page" v-if="item.task_state==1">
-          <md-card>
-            <md-card-content>
-              <span
-                style="font-size: 20px;color:red;"
-              >{{item.task_type}}任务 {{getState(item.task_state)}}</span>
-              <br />链接：
-              <span style="color:#448aff;">{{item.task_url}}</span>
-            </md-card-content>
-          </md-card>
-          <md-button
-            id="copied"
-            class="md-raised md-primary full-width"
-            :data-clipboard-text="item.task_url"
-          >点击复制地址</md-button>
-          <md-button class="md-raised md-primary full-width" @click="updateTask">提交任务</md-button>
-        </div>
-        <div class="main-page" v-if="item.task_state==2">
-          <md-card>
-            <md-card-content>
-              <span style="font-size: 20px;color:red;">审核中</span>
-              <br />
-              任务类型：{{item.task_type}}
-              <br />视频地址：
-              <span style="color:#448aff;">{{item.task_url}}</span>
-            </md-card-content>
-            <div class="money">+0.1元</div>
-          </md-card>
-        </div>
-        <div class="main-page" v-if="item.task_state==3">
-          <md-card>
-            <md-card-content>
-              <span style="font-size: 20px;color:red;">已完成</span>
-              <br />
-              任务类型：{{item.task_type}}
-              <br />视频地址：
-              <span style="color:#448aff;">{{item.task_url}}</span>
-            </md-card-content>
-            <div class="money">+0.1元</div>
-          </md-card>
-        </div>
-      </div>
-      <user-menu />
+  <div class="main-scroll">
+    <div class="main-page" v-if="item.task_state==1">
+      <md-card>
+        <md-card-content>
+          <span
+            style="font-size: 20px;color:red;"
+          >{{item.task_type}}任务 {{getState(item.task_state)}}</span>
+          <br />链接：
+          <span style="color:#448aff;">{{item.task_url}}</span>
+        </md-card-content>
+      </md-card>
+      <md-button
+        id="copied"
+        class="md-raised md-primary full-width"
+        :data-clipboard-text="item.task_url"
+      >点击复制地址</md-button>
+      <md-button class="md-raised md-primary full-width" @click="updateTask">提交任务</md-button>
+    </div>
+    <div class="main-page" v-if="item.task_state==2">
+      <md-card>
+        <md-card-content>
+          <span style="font-size: 20px;color:red;">审核中</span>
+          <br />
+          任务类型：{{item.task_type}}
+          <br />视频地址：
+          <span style="color:#448aff;">{{item.task_url}}</span>
+        </md-card-content>
+        <div class="money">+0.1元</div>
+      </md-card>
+    </div>
+    <div class="main-page" v-if="item.task_state==3">
+      <md-card>
+        <md-card-content>
+          <span style="font-size: 20px;color:red;">已完成</span>
+          <br />
+          任务类型：{{item.task_type}}
+          <br />视频地址：
+          <span style="color:#448aff;">{{item.task_url}}</span>
+        </md-card-content>
+        <div class="money">+0.1元</div>
+      </md-card>
     </div>
   </div>
 </template>

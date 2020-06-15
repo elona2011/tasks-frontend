@@ -1,7 +1,7 @@
 <template>
-  <div style="height:100vh;">
+  <!-- <div style="height:100vh;">
     <div class="phone-viewport">
-      <user-title title="发布新任务" />
+      <user-title title="发布新任务" /> -->
 
       <div class="main-page">
         <form novalidate class="md-layout" @submit.prevent="validateUser">
@@ -53,9 +53,9 @@
           <md-button type="submit" class="md-raised md-primary full-width" :disabled="sending">提交任务</md-button>
         </form>
       </div>
-      <publish-menu />
-    </div>
-  </div>
+      <!-- <publish-menu /> -->
+    <!-- </div>
+  </div> -->
 </template>
 
 <script>
@@ -162,18 +162,6 @@ export default {
 .full-width {
   width: 100%;
   margin: 10px 0;
-}
-.phone-viewport {
-  /* width: 322px; */
-  height: 100vh;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid rgba(#000, 0.26);
-  background: rgba(#000, 0.06);
 }
 .bottom-bar {
   flex-shrink: 0;

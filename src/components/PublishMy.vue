@@ -1,25 +1,19 @@
 <template>
-  <div style="height:100vh;">
-    <div class="phone-viewport">
-      <user-title title="我的发布" />
-      <div class="main-scroll">
-        <div class="main-page">
-          <md-card v-for="item in items" :key="item.id">
-            <md-card-content @click.native="viewPublish(item)">
-              状态：
-              <span style="color:red;">{{getState(item.state)}}</span>
-              <br />链接：
-              <span style="color:#448aff;">{{item.url}}</span>
-              <br />完成：
-              <span style="margin-right:10px;">关注{{item.follow_finish_num}}/{{item.follow_num}}</span>
-              <span style="margin-right:10px;">点赞{{item.thumb_finish_num}}/{{item.thumb_num}}</span>
-              <span style="margin-right:10px;">评论{{item.comment_finish_num}}/{{item.comment_num}}</span>
-              <md-progress-bar md-mode="determinate" :md-value="getProgress(item)"></md-progress-bar>
-            </md-card-content>
-          </md-card>
-        </div>
-      </div>
-      <publish-menu />
+  <div class="main-scroll">
+    <div class="main-page">
+      <md-card v-for="item in items" :key="item.id">
+        <md-card-content @click.native="viewPublish(item)">
+          状态：
+          <span style="color:red;">{{getState(item.state)}}</span>
+          <br />链接：
+          <span style="color:#448aff;">{{item.url}}</span>
+          <br />完成：
+          <span style="margin-right:10px;">关注{{item.follow_finish_num}}/{{item.follow_num}}</span>
+          <span style="margin-right:10px;">点赞{{item.thumb_finish_num}}/{{item.thumb_num}}</span>
+          <span style="margin-right:10px;">评论{{item.comment_finish_num}}/{{item.comment_num}}</span>
+          <md-progress-bar md-mode="determinate" :md-value="getProgress(item)"></md-progress-bar>
+        </md-card-content>
+      </md-card>
     </div>
   </div>
 </template>
@@ -61,10 +55,11 @@ export default {
     },
     getProgress(item) {
       return (
-        (item.follow_finish_num +
+        ((item.follow_finish_num +
           item.thumb_finish_num +
           item.comment_finish_num) /
-        (item.follow_num + item.thumb_num + item.comment_num)*100
+          (item.follow_num + item.thumb_num + item.comment_num)) *
+        100
       );
     }
   }
@@ -99,18 +94,6 @@ export default {
 .full-width {
   width: 100%;
   margin: 10px 0;
-}
-.phone-viewport {
-  /* width: 322px; */
-  height: 100vh;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid rgba(#000, 0.26);
-  background: rgba(#000, 0.06);
 }
 .bottom-bar {
   flex-shrink: 0;

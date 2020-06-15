@@ -23,9 +23,9 @@ export function getPublishById(self) {
                 self.item = res.data.result;
                 if (self.item) {
                     self.item.state_cn = self.item.state == 1 ? '进行中' : (self.item.state == 2 ? '已完成' : '暂停中')
-                    self.item.follow_all = self.item.follow_finish_num+'/'+self.item.follow_num
-                    self.item.thumb_all = self.item.thumb_finish_num+'/'+self.item.thumb_num
-                    self.item.comment_all = self.item.comment_finish_num+'/'+self.item.comment_num
+                    self.item.follow_all = self.item.follow_finish_num + '/' + self.item.follow_num
+                    self.item.thumb_all = self.item.thumb_finish_num + '/' + self.item.thumb_num
+                    self.item.comment_all = self.item.comment_finish_num + '/' + self.item.comment_num
                 }
             }
         })
@@ -39,3 +39,4 @@ export function editPublishTask(id, token, state) {
             state
         })
 }
+

@@ -1,27 +1,23 @@
 <template>
-  <div style="height:100vh;">
-    <div class="phone-viewport">
-      <user-title title="任务详情"/>
-      <div class="main-scroll">
-        <div class="main-page">
-          <md-card>
-            <md-card-content>
-              视频地址：
-              <span style="color:#448aff;">{{item.task_url}}</span>
-              <br />
-              {{item.task_type}}任务
-              <span style="color:red;">剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
-            </md-card-content>
-          </md-card>
-          <md-button
-            id="copied"
-            class="md-raised md-primary full-width"
-            :data-clipboard-text="item.task_url"
-          >点击复制地址</md-button>
-          <md-button class="md-raised md-primary full-width" @click="startTask">开始任务</md-button>
-        </div>
-      </div>
-      <user-menu />
+  <div class="main-scroll">
+    <div class="main-page">
+      <md-card>
+        <md-card-content>
+          视频地址：
+          <span style="color:#448aff;">{{item.task_url}}</span>
+          <br />
+          {{item.task_type}}任务
+          <span
+            style="color:red;"
+          >剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
+        </md-card-content>
+      </md-card>
+      <md-button
+        id="copied"
+        class="md-raised md-primary full-width"
+        :data-clipboard-text="item.task_url"
+      >点击复制地址</md-button>
+      <md-button class="md-raised md-primary full-width" @click="startTask">开始任务</md-button>
     </div>
   </div>
 </template>

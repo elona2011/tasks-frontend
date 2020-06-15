@@ -79,25 +79,3 @@ export function updatetask(self) {
         });
 }
 
-export function getUserMoney(self) {
-    return axios
-        .post("/api/getUserMoney", {
-            token: self.$route.params.token
-        })
-}
-
-export function getUserPay(token, money_pay) {
-    return axios
-        .post("/api/getUserPay", {
-            token,
-            money_pay
-        })
-}
-
-export function getUserPayDetail(token, id) {
-    return axios
-        .post("/api/getUserPayDetail", {
-            token,
-            id
-        })
-}

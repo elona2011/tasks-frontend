@@ -1,13 +1,7 @@
 <template>
-  <div>
-    <md-toolbar>
-      <h3 class="md-title">账号填写</h3>
-    </md-toolbar>
-
-    <div class="main-page">
-      <md-content>提交成功</md-content>
-      <md-button class="md-raised md-primary full-width" @click="viewTask">查看任务</md-button>
-    </div>
+  <div class="main-page">
+    <md-content>提交成功</md-content>
+    <md-button class="md-raised md-primary full-width" @click="viewTask">查看任务</md-button>
   </div>
 </template>
 
@@ -23,7 +17,7 @@ export default {
       });
     },
     viewTask() {
-        this.$router.push({
+      this.$router.push({
         name: "UserTasksNew",
         params: { token: this.$route.params.token }
       });

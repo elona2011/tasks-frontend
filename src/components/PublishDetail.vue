@@ -1,64 +1,57 @@
 <template>
-  <div style="height:100vh;">
-    <div class="phone-viewport">
-      <user-title title="任务详情" />
-
-      <div class="main-page">
-        <form novalidate class="md-layout">
-          <md-field>
-            <label for="videoUrl">视频中复制链接</label>
-            <md-textarea name="videoUrl" v-model="item.url" :disabled="true"></md-textarea>
-          </md-field>
-          <md-field>
-            <label for="follow">关注完成</label>
-            <md-input
-              id="follow"
-              name="follow"
-              autocomplete="off"
-              v-model="item.follow_all"
-              :disabled="true"
-            />
-          </md-field>
-          <md-field>
-            <label for="comment">评论完成</label>
-            <md-input
-              id="comment"
-              name="comment"
-              autocomplete="off"
-              v-model="item.comment_all"
-              :disabled="true"
-            />
-          </md-field>
-          <md-field>
-            <label for="thumb">点赞完成</label>
-            <md-input
-              id="thumb"
-              name="thumb"
-              autocomplete="off"
-              v-model="item.thumb_all"
-              :disabled="true"
-            />
-          </md-field>
-          <md-field>
-            <label for="thumb">任务状态</label>
-            <md-input
-              id="thumb"
-              name="thumb"
-              autocomplete="off"
-              v-model="item.state_cn"
-              :disabled="true"
-            />
-          </md-field>
-          <md-button
-            type="submit"
-            class="md-raised md-primary full-width"
-            @click="editPublishTask(item.state==1?3:1)"
-            :disabled="item.state==2"
-          >{{item.state==1?'暂停任务':'开始任务'}}</md-button>
-        </form>
-      </div>
-      <publish-menu />
-    </div>
+  <div class="main-page">
+    <form novalidate class="md-layout">
+      <md-field>
+        <label for="videoUrl">视频中复制链接</label>
+        <md-textarea name="videoUrl" v-model="item.url" :disabled="true"></md-textarea>
+      </md-field>
+      <md-field>
+        <label for="follow">关注完成</label>
+        <md-input
+          id="follow"
+          name="follow"
+          autocomplete="off"
+          v-model="item.follow_all"
+          :disabled="true"
+        />
+      </md-field>
+      <md-field>
+        <label for="comment">评论完成</label>
+        <md-input
+          id="comment"
+          name="comment"
+          autocomplete="off"
+          v-model="item.comment_all"
+          :disabled="true"
+        />
+      </md-field>
+      <md-field>
+        <label for="thumb">点赞完成</label>
+        <md-input
+          id="thumb"
+          name="thumb"
+          autocomplete="off"
+          v-model="item.thumb_all"
+          :disabled="true"
+        />
+      </md-field>
+      <md-field>
+        <label for="thumb">任务状态</label>
+        <md-input
+          id="thumb"
+          name="thumb"
+          autocomplete="off"
+          v-model="item.state_cn"
+          :disabled="true"
+        />
+      </md-field>
+      <md-button
+        type="submit"
+        class="md-raised md-primary full-width"
+        @click="editPublishTask(item.state==1?3:1)"
+        :disabled="item.state==2"
+      >{{item.state==1?'暂停任务':'开始任务'}}</md-button>
+    </form>
   </div>
 </template>
 

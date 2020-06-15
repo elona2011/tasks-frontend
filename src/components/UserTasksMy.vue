@@ -1,22 +1,16 @@
 <template>
-  <div style="height:100vh;">
-    <div class="phone-viewport">
-      <user-title title="我的任务"/>
-      <div class="main-scroll">
-        <div class="main-page">
-          <md-card v-for="item in items" :key="item.id">
-            <md-card-content @click.native="viewTask(item)">
-              <span style="font-size: 20px;">{{item.task_type}}任务</span>
-              <br />
-              状态：<span style="color:red;">{{getState(item.task_state)}}</span>
-              <br />链接：
-              <span style="color:#448aff;">{{item.task_url}}</span>
-            </md-card-content>
-            <div class="money">+0.1元</div>
-          </md-card>
-        </div>
-      </div>
-      <user-menu />
+  <div class="main-scroll">
+    <div class="main-page">
+      <md-card v-for="item in items" :key="item.id">
+        <md-card-content @click.native="viewTask(item)">
+          <span style="font-size: 20px;">{{item.task_type}}任务</span>
+          <br />状态：
+          <span style="color:red;">{{getState(item.task_state)}}</span>
+          <br />链接：
+          <span style="color:#448aff;">{{item.task_url}}</span>
+        </md-card-content>
+        <div class="money">+0.1元</div>
+      </md-card>
     </div>
   </div>
 </template>
@@ -30,7 +24,7 @@ export default {
     items: []
   }),
   mounted() {
-    mytasks(this)
+    mytasks(this);
   },
   methods: {
     publishAgain() {

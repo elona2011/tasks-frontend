@@ -1,23 +1,17 @@
 <template>
-  <div style="height:100vh;">
-    <div class="phone-viewport">
-      <user-title title="提现结果" />
-      <div class="main-scroll">
-        <div class="main-page">
-          <md-card>
-            <md-card-header>
-              <div class="md-title red">{{result}}</div>
-            </md-card-header>
-          </md-card>
-        </div>
-      </div>
-      <user-menu />
+  <div class="main-scroll">
+    <div class="main-page">
+      <md-card>
+        <md-card-header>
+          <div class="md-title red">{{result}}</div>
+        </md-card-header>
+      </md-card>
     </div>
   </div>
 </template>
 
 <script>
-import { getUserPayDetail } from "../api/userInterface";
+import { getUserPayDetail } from "../api/pay";
 
 export default {
   name: "UserPayDetail",

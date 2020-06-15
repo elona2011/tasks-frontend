@@ -1,8 +1,11 @@
-import PublishTask from './components/PublishTask'
+import PublishMenu from './components/PublishMenu'
+import PublishNew from './components/PublishNew'
 import PublishDetail from './components/PublishDetail'
 import PublishMy from './components/PublishMy'
+import PublishPay from './components/PublishPay'
 import PublishTaskSuccess from './components/PublishTaskSuccess'
 import FillDyid from './components/FillDyid'
+import UserMenu from './components/UserMenu'
 import UserAccount from './components/UserAccount'
 import UserAccountSuccess from './components/UserAccountSuccess'
 import UserTasksNew from './components/UserTasksNew'
@@ -19,20 +22,35 @@ import VueRouter from 'vue-router'
 const routes = [
     { name: 'MainPage', path: '/', component: MainPage },
     { name: 'PageError', path: '/pageerror', component: PageError },
-    { name: 'publish', path: '/publish/:token', component: PublishTask },
-    { name: 'publishsuccess', path: '/publishsuccess/:token', component: PublishTaskSuccess },
-    { name: 'PublishMy', path: '/publishmy/:token', component: PublishMy },
-    { name: 'PublishDetail', path: '/publishdetail/:id/:token', component: PublishDetail },
-    { name: 'filldyid', path: '/filldyid/:token', component: FillDyid },
-    { name: 'UserAccount', path: '/useraccount/:token', component: UserAccount },
-    { name: 'UserAccountSuccess', path: '/useraccountsuccess/:token', component: UserAccountSuccess },
-    { name: 'UserTasksNew', path: '/usertasksnew/:token', component: UserTasksNew },
-    { name: 'UserTasksMy', path: '/usertasksmy/:token', component: UserTasksMy },
-    { name: 'UserMy', path: '/usermy/:token', component: UserMy },
-    { name: 'UserPay', path: '/userpay/:token', component: UserPay },
-    { name: 'UserPayDetail', path: '/userpaydetail/:id/:token', component: UserPayDetail },
-    { name: 'UserTaskStart', path: '/usertaskstart/:id/:token', component: UserTaskStart },
-    { name: 'UserTaskDetail', path: '/usertaskdetail/:id/:token', component: UserTaskDetail },
+    {
+        name: 'PublishMenu',
+        path: '/publish',
+        component: PublishMenu,
+        children: [
+            { name: 'PublishNew', path: 'new/:token', component: PublishNew, meta: { title: '发布任务' } },
+            { name: 'PublishMy', path: 'my/:token', component: PublishMy, meta: { title: '我的发布' } },
+            { name: 'PublishPay', path: 'pay/:token', component: PublishPay, meta: { title: '充值' } },
+            { name: 'PublishTaskSuccess', path: 'success/:token', component: PublishTaskSuccess, meta: { title: '发布成功' } },
+            { name: 'PublishDetail', path: 'detail/:id/:token', component: PublishDetail, meta: { title: '发布详情' } },
+        ]
+    },
+    {
+        name: 'UserMenu',
+        path: '/user',
+        component: UserMenu,
+        children: [
+            { name: 'UserTasksNew', path: 'new/:token', component: UserTasksNew, meta: { title: '新任务' } },
+            { name: 'UserMy', path: 'my/:token', component: UserMy, meta: { title: '我的' } },
+            { name: 'UserTasksMy', path: 'mytask/:token', component: UserTasksMy, meta: { title: '我的作务' } },
+            { name: 'UserTaskStart', path: 'taskstart/:id/:token', component: UserTaskStart, meta: { title: '开始任务' } },
+            { name: 'UserTaskDetail', path: 'taskdetail/:id/:token', component: UserTaskDetail, meta: { title: '任务详情' } },
+            { name: 'UserPay', path: 'pay/:token', component: UserPay, meta: { title: '我的提现' } },
+            { name: 'UserPayDetail', path: 'paydetail/:id/:token', component: UserPayDetail, meta: { title: '提现详情' } },
+            { name: 'filldyid', path: 'filldyid/:token', component: FillDyid },
+            { name: 'UserAccount', path: 'account/:token', component: UserAccount },
+            { name: 'UserAccountSuccess', path: 'accountsuccess/:token', component: UserAccountSuccess },
+        ]
+    },
 ]
 
 export const router = new VueRouter({
