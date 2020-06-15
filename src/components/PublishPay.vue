@@ -75,9 +75,7 @@ export default {
     getUserMoney(this).then(res => {
       if (res.data.code == 0) {
         this.item = res.data.result;
-        if (this.item.money < 100) {
-          this.sending = true;
-        }
+        
       }
     });
   },
