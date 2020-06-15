@@ -13,9 +13,11 @@ import UserPayDetail from './components/UserPayDetail'
 import UserTaskStart from './components/UserTaskStart'
 import UserTaskDetail from './components/UserTaskDetail'
 import PageError from './components/PageError'
+import MainPage from './components/MainPage'
 import VueRouter from 'vue-router'
 
 const routes = [
+    { name: 'MainPage', path: '/', component: MainPage },
     { name: 'PageError', path: '/pageerror', component: PageError },
     { name: 'publish', path: '/publish/:token', component: PublishTask },
     { name: 'publishsuccess', path: '/publishsuccess/:token', component: PublishTaskSuccess },
