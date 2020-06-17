@@ -1,16 +1,15 @@
 <template>
-  <iframe id="iframe" src="http://v.bootstrapmb.com/2020/6/m5c8m8092" frameborder="0" width="100%" height="1000px"></iframe>
+  <div></div>
 </template>
 
 <script>
 export default {
-  name: "PageError",
-
+  name: "PageError"
 };
 </script>
 
 <style scoped>
-iframe{
-    height: 1200px;
+iframe {
+  height: 1200px;
 }
 </style>
