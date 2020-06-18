@@ -114,7 +114,6 @@ export default {
               res => {
                 console.log(res);
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
-                  console.log("success");
                   alert("充值成功");
                 } else {
                   alert("充值失败");

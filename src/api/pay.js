@@ -1,6 +1,10 @@
 import { axios } from "./axios";
 
 export function getUserMoney(self) {
+    alert(self)
+    alert(self.$route)
+    alert(self.$route.params)
+    alert(self.$route.params.token)
     return axios
         .post("/pay/getUserMoney", {
             token: self.$route.params.token
