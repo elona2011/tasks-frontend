@@ -1,138 +1,146 @@
 <template>
-  <div class="main-page">
-    <form
-      novalidate
-      class="md-layout"
-      @submit.prevent="validateUser"
-      style="flex-direction: column;"
-    >
-      <md-field :class="getValidationClass('videoUrl')">
-        <label for="videoUrl">视频中复制链接</label>
-        <md-textarea name="videoUrl" v-model="form.videoUrl" :disabled="sending"></md-textarea>
-        <span class="md-error" v-if="!$v.form.videoUrl.required">请复制视频地址</span>
-        <span class="md-error" v-if="!$v.form.videoUrl.dy_regex">请复制视频地址</span>
-      </md-field>
-      <div class="md-layout">
-        <div class="md-layout-item">
-          <md-field :class="getValidationClass('followPrice')">
-            <label for="followPrice">单个关注奖励(元)</label>
-            <md-input
-              type="number"
-              id="followPrice"
-              name="followPrice"
-              autocomplete="off"
-              v-model="form.followPrice"
-              :disabled="sending"
-            />
-            <span class="md-error" v-if="!$v.form.followPrice.required">请填写奖励</span>
-            <span class="md-error" v-else-if="!$v.form.followPrice.maxlength">填写错误</span>
-          </md-field>
-        </div>
-        <div class="md-layout-item">
-          <md-field :class="getValidationClass('follow')">
-            <label for="follow">关注总数</label>
-            <md-input
-              type="number"
-              id="follow"
-              name="follow"
-              autocomplete="off"
-              v-model="form.follow"
-              :disabled="sending"
-            />
-            <span class="md-error" v-if="!$v.form.follow.required">请填写关注数</span>
-            <span class="md-error" v-else-if="!$v.form.follow.maxlength">填写错误</span>
-          </md-field>
-        </div>
-      </div>
-      <div class="md-layout">
-        <div class="md-layout-item">
-          <md-field :class="getValidationClass('commentPrice')">
-            <label for="commentPrice">单个评论奖励(元)</label>
-            <md-input
-              type="number"
-              id="commentPrice"
-              name="commentPrice"
-              autocomplete="off"
-              v-model="form.commentPrice"
-              :disabled="sending"
-            />
-            <span class="md-error" v-if="!$v.form.commentPrice.required">请填写奖励</span>
-            <span class="md-error" v-else-if="!$v.form.commentPrice.maxlength">填写错误</span>
-          </md-field>
-        </div>
-        <div class="md-layout-item">
-          <md-field :class="getValidationClass('comment')">
-            <label for="comment">评论总数</label>
-            <md-input
-              type="number"
-              id="comment"
-              name="comment"
-              autocomplete="off"
-              v-model="form.comment"
-              :disabled="sending"
-            />
-            <span class="md-error" v-if="!$v.form.comment.required">请填写评论数</span>
-            <span class="md-error" v-else-if="!$v.form.comment.maxlength">填写错误</span>
-          </md-field>
-        </div>
-      </div>
-      <div class="md-layout">
-        <div class="md-layout-item">
-          <md-field :class="getValidationClass('thumbPrice')">
-            <label for="thumbPrice">单个点赞奖励(元)</label>
-            <md-input
-              type="number"
-              id="thumbPrice"
-              name="thumbPrice"
-              autocomplete="off"
-              v-model="form.thumbPrice"
-              :disabled="sending"
-            />
-            <span class="md-error" v-if="!$v.form.thumbPrice.required">请填写奖励</span>
-            <span class="md-error" v-else-if="!$v.form.thumbPrice.maxlength">填写错误</span>
-          </md-field>
-        </div>
-        <div class="md-layout-item">
-          <md-field :class="getValidationClass('thumb')">
-            <label for="thumb">点赞总数</label>
-            <md-input
-              type="number"
-              id="thumb"
-              name="thumb"
-              autocomplete="off"
-              v-model="form.thumb"
-              :disabled="sending"
-            />
-            <span class="md-error" v-if="!$v.form.thumb.required">请填写点赞数</span>
-            <span class="md-error" v-else-if="!$v.form.thumb.maxlength">填写错误</span>
-          </md-field>
-        </div>
-      </div>
-      <md-list>
-        <md-list-item>
-          <div class="list-icon">
-            <i class="material-icons">monetization_on</i>
+  <div class="main-scroll">
+    <div class="main-page">
+      <form
+        novalidate
+        class="md-layout"
+        @submit.prevent="validateUser"
+        style="flex-direction: column;"
+      >
+        <md-field :class="getValidationClass('videoUrl')">
+          <label for="videoUrl">视频中复制链接</label>
+          <md-textarea name="videoUrl" v-model="form.videoUrl" :disabled="sending"></md-textarea>
+          <span class="md-error" v-if="!$v.form.videoUrl.required">请复制视频地址</span>
+          <span class="md-error" v-if="!$v.form.videoUrl.dy_regex">请复制视频地址</span>
+        </md-field>
+        <div class="md-layout">
+          <div class="md-layout-item">
+            <md-field :class="getValidationClass('followPrice')">
+              <label for="followPrice">单个关注奖励(元)</label>
+              <md-input
+                type="number"
+                id="followPrice"
+                name="followPrice"
+                autocomplete="off"
+                v-model="form.followPrice"
+                :disabled="sending"
+              />
+              <span class="md-error" v-if="!$v.form.followPrice.required">请填写奖励</span>
+              <span class="md-error" v-else-if="!$v.form.followPrice.maxlength">填写错误</span>
+            </md-field>
           </div>
-          <span class="md-list-item-text">任务总额</span>
-          <span class="md-list-item-text">{{totalPrice.toFixed(2)}}元</span>
-          <span class="md-list-item-text"></span>
-        </md-list-item>
-        <md-list-item>
-          <div class="list-icon">
-            <i class="material-icons">attach_money</i>
+          <div class="md-layout-item">
+            <md-field :class="getValidationClass('follow')">
+              <label for="follow">关注总数</label>
+              <md-input
+                type="number"
+                id="follow"
+                name="follow"
+                autocomplete="off"
+                v-model="form.follow"
+                :disabled="sending"
+              />
+              <span class="md-error" v-if="!$v.form.follow.required">请填写关注数</span>
+              <span class="md-error" v-else-if="!$v.form.follow.maxlength">填写错误</span>
+            </md-field>
           </div>
-          <span class="md-list-item-text">当前余额</span>
-          <span class="md-list-item-text list-row" :class="{red:isMoneyShort}">
-            {{item.money_view.toFixed(2)}}元
-            <i class="material-icons">error</i>
-          </span>
-          <span class="md-list-item-text">
-            <router-link :to="{name:'PublishPay',params:{token:$route.params.token}}">{{inCashTip}}</router-link>
-          </span>
-        </md-list-item>
-      </md-list>
-      <md-button type="submit" class="md-raised md-primary full-width" :disabled="isMoneyShort">提交任务</md-button>
-    </form>
+        </div>
+        <div class="md-layout">
+          <div class="md-layout-item">
+            <md-field :class="getValidationClass('commentPrice')">
+              <label for="commentPrice">单个评论奖励(元)</label>
+              <md-input
+                type="number"
+                id="commentPrice"
+                name="commentPrice"
+                autocomplete="off"
+                v-model="form.commentPrice"
+                :disabled="sending"
+              />
+              <span class="md-error" v-if="!$v.form.commentPrice.required">请填写奖励</span>
+              <span class="md-error" v-else-if="!$v.form.commentPrice.maxlength">填写错误</span>
+            </md-field>
+          </div>
+          <div class="md-layout-item">
+            <md-field :class="getValidationClass('comment')">
+              <label for="comment">评论总数</label>
+              <md-input
+                type="number"
+                id="comment"
+                name="comment"
+                autocomplete="off"
+                v-model="form.comment"
+                :disabled="sending"
+              />
+              <span class="md-error" v-if="!$v.form.comment.required">请填写评论数</span>
+              <span class="md-error" v-else-if="!$v.form.comment.maxlength">填写错误</span>
+            </md-field>
+          </div>
+        </div>
+        <div class="md-layout">
+          <div class="md-layout-item">
+            <md-field :class="getValidationClass('thumbPrice')">
+              <label for="thumbPrice">单个点赞奖励(元)</label>
+              <md-input
+                type="number"
+                id="thumbPrice"
+                name="thumbPrice"
+                autocomplete="off"
+                v-model="form.thumbPrice"
+                :disabled="sending"
+              />
+              <span class="md-error" v-if="!$v.form.thumbPrice.required">请填写奖励</span>
+              <span class="md-error" v-else-if="!$v.form.thumbPrice.maxlength">填写错误</span>
+            </md-field>
+          </div>
+          <div class="md-layout-item">
+            <md-field :class="getValidationClass('thumb')">
+              <label for="thumb">点赞总数</label>
+              <md-input
+                type="number"
+                id="thumb"
+                name="thumb"
+                autocomplete="off"
+                v-model="form.thumb"
+                :disabled="sending"
+              />
+              <span class="md-error" v-if="!$v.form.thumb.required">请填写点赞数</span>
+              <span class="md-error" v-else-if="!$v.form.thumb.maxlength">填写错误</span>
+            </md-field>
+          </div>
+        </div>
+        <md-list>
+          <md-list-item>
+            <div class="list-icon">
+              <i class="material-icons">monetization_on</i>
+            </div>
+            <span class="md-list-item-text">任务总额</span>
+            <span class="md-list-item-text">{{totalPrice.toFixed(2)}}元</span>
+            <span class="md-list-item-text"></span>
+          </md-list-item>
+          <md-list-item>
+            <div class="list-icon">
+              <i class="material-icons">attach_money</i>
+            </div>
+            <span class="md-list-item-text">当前余额</span>
+            <span class="md-list-item-text list-row" :class="{red:isMoneyShort}">
+              {{item.money_view.toFixed(2)}}元
+              <i class="material-icons">error</i>
+            </span>
+            <span class="md-list-item-text">
+              <router-link
+                :to="{name:'PublishPay',params:{token:$route.params.token}}"
+              >{{inCashTip}}</router-link>
+            </span>
+          </md-list-item>
+        </md-list>
+        <md-button
+          type="submit"
+          class="md-raised md-primary full-width"
+          :disabled="isMoneyShort"
+        >提交任务</md-button>
+      </form>
+    </div>
   </div>
 </template>
 
