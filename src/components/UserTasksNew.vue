@@ -41,7 +41,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .money {
-  width: 80px;
+  width: 90px;
   font-size: 20px;
   color: red;
   align-self: center;
