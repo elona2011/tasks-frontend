@@ -90,10 +90,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .money {
-  width: 70px;
+  width: 80px;
   font-size: 20px;
   color: red;
   align-self: center;
+  flex-shrink: 0;
 }
 .md-content {
   width: 100%;

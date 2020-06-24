@@ -110,15 +110,22 @@
       </div>
       <md-list>
         <md-list-item>
-          <md-icon md-src="monetization_on-black-24dp.svg"></md-icon>
+          <div class="list-icon">
+            <i class="material-icons">monetization_on</i>
+          </div>
           <span class="md-list-item-text">任务总额</span>
           <span class="md-list-item-text">{{totalPrice.toFixed(2)}}元</span>
           <span class="md-list-item-text"></span>
         </md-list-item>
         <md-list-item>
-          <md-icon md-src="attach_money-black-24dp.svg"></md-icon>
+          <div class="list-icon">
+            <i class="material-icons">attach_money</i>
+          </div>
           <span class="md-list-item-text">当前余额</span>
-          <span class="md-list-item-text" :class="{red:isMoneyShort}">{{item.money_view.toFixed(2)}}元</span>
+          <span class="md-list-item-text list-row" :class="{red:isMoneyShort}">
+            {{item.money_view.toFixed(2)}}元
+            <i class="material-icons">error</i>
+          </span>
           <span class="md-list-item-text">
             <router-link :to="{name:'PublishPay',params:{token:$route.params.token}}">{{inCashTip}}</router-link>
           </span>
@@ -257,6 +264,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.list-row {
+  flex-direction: row;
+  align-items: center;
+}
+.list-icon {
+  display: flex;
+  width: 50px;
+}
 .red {
   color: red;
 }
