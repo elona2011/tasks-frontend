@@ -13,7 +13,7 @@ export default {
   methods: {
     publishAgain() {
       this.$router.push({
-        name: "publish",
+        name: "PublishNew",
         params: { token: this.$route.params.token }
       });
     },
@@ -38,6 +38,7 @@ export default {
 }
 .main-page {
   margin: 20px;
+  flex: 1 1;
 }
 .full-width {
   width: 100%;

@@ -64,5 +64,6 @@ export default {
   overflow: hidden;
   border: 1px solid rgba(#000, 0.26);
   background: rgba(#000, 0.06);
+  justify-content: space-between;
 }
 </style>

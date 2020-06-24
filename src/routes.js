@@ -16,11 +16,12 @@ import UserPayDetail from './components/UserPayDetail'
 import UserTaskStart from './components/UserTaskStart'
 import UserTaskDetail from './components/UserTaskDetail'
 import PageError from './components/PageError'
-import MainPage from './components/MainPage'
+// import MainPage from './components/MainPage'
 import VueRouter from 'vue-router'
 
 const routes = [
-    { name: 'MainPage', path: '/', component: MainPage },
+    { path: '/:token', redirect: '/publish/new/:token' },
+    { path: '/', redirect: '/pageerror' },
     { name: 'PageError', path: '/pageerror', component: PageError },
     {
         name: 'PublishMenu',

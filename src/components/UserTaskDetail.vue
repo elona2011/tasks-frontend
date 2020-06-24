@@ -38,7 +38,7 @@
           <br />视频地址：
           <span style="color:#448aff;">{{item.task_url}}</span>
         </md-card-content>
-        <div class="money">+0.1元</div>
+        <div class="money">+{{item.task_money/100}}元</div>
       </md-card>
     </div>
   </div>
