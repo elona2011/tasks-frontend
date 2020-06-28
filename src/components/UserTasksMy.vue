@@ -63,7 +63,7 @@ export default {
   font-size: 20px;
   color: red;
   align-self: center;
-  min-width: 70px;
+  min-width: 80px;
 }
 .md-content {
   width: 100%;

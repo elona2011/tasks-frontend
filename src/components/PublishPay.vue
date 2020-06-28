@@ -36,7 +36,7 @@
             :disabled="sending"
           />
           <span class="md-error" v-if="!$v.form.money.required">请填写充值金额</span>
-          <span class="md-error" v-else-if="!$v.form.money.between">填写1~10000</span>
+          <span class="md-error" v-else-if="!$v.form.money.between">填写0.1~10000</span>
         </md-field>
         <md-button type="submit" class="md-raised md-primary full-width" :disabled="sending">充值</md-button>
       </form>
@@ -67,7 +67,7 @@ export default {
     form: {
       money: {
         required,
-        between: between(1, 10000)
+        between: between(0.1, 10000)
       }
     }
   },
