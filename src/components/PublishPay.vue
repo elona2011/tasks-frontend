@@ -121,7 +121,6 @@ export default {
                 getUserMoney(this).then(res => {
                   if (res.data.code == 0) {
                     this.item = res.data.result;
-                    alert(this.item);
                   }
                 });
               }
