@@ -15,6 +15,11 @@
         class="md-raised md-primary full-width"
         :data-clipboard-text="item.task_url"
       >点击复制地址</md-button>
+      <md-field>
+        <label>点击上传视频</label>
+        <md-file v-model="imageCut" @md-change="onFileUpload($event)" />
+        <!-- <span class="md-error" v-if="!$v.form.file.required">请上传视频文件</span> -->
+      </md-field>
       <md-button class="md-raised md-primary full-width" @click="updateTask">提交任务</md-button>
     </div>
     <div class="main-page" v-if="item.task_state==2">
@@ -45,7 +50,7 @@
 </template>
 
 <script>
-import { usertask, updatetask } from "../api/userInterface";
+import { usertask, updatetask, uploadImg } from "../api/userInterface";
 const ClipboardJS = require("clipboard");
 
 export default {
@@ -53,7 +58,8 @@ export default {
   data: () => ({
     item: {
       task_state: 0
-    }
+    },
+    imageCut: null
   }),
   mounted() {
     new ClipboardJS("#copied");
@@ -82,6 +88,17 @@ export default {
     },
     updateTask() {
       updatetask(this);
+    },
+    onFileUpload(e) {
+      if (e.length) {
+        this.imageCut = e[0];
+        let data = new FormData();
+        data.set("file", this.imageCut);
+        data.set("id", this.$route.params.id);
+        data.set("token", this.$route.params.token);
+
+        uploadImg(data);
+      }
     }
   }
 };

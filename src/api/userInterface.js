@@ -79,3 +79,11 @@ export function updatetask(self) {
         });
 }
 
+export function uploadImg(data) {
+    return axios
+        .request({
+            url: '/api/upload',
+            method: "post",
+            data
+        })
+}
