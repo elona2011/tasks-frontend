@@ -42,7 +42,7 @@ export default {
   methods: {
     checkYes(d) {
       publishCheck(
-        d.table_task_id,
+        d.id,
         this.$route.params.id,
         true,
         this.$route.params.token
@@ -52,7 +52,7 @@ export default {
     },
     checkNo(d) {
       publishCheck(
-        d.table_task_id,
+        d.id,
         this.$route.params.id,
         false,
         this.$route.params.token
