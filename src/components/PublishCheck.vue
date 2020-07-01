@@ -41,18 +41,24 @@ export default {
   },
   methods: {
     checkYes(d) {
-      publishCheck(d.table_task_id, true, this.$route.params.token).then(
-        res => {
-          this.items = res.data.result;
-        }
-      );
+      publishCheck(
+        d.table_task_id,
+        this.$route.params.id,
+        true,
+        this.$route.params.token
+      ).then(res => {
+        this.items = res.data.result;
+      });
     },
     checkNo(d) {
-      publishCheck(d.table_task_id, false, this.$route.params.token).then(
-        res => {
-          this.items = res.data.result;
-        }
-      );
+      publishCheck(
+        d.table_task_id,
+        this.$route.params.id,
+        false,
+        this.$route.params.token
+      ).then(res => {
+        this.items = res.data.result;
+      });
     },
     // viewPublish(item) {
     //   this.$router.push({

@@ -10,13 +10,20 @@
           <span
             style="color:red;"
           >剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
+          <br />
+          任务步骤：
+          <br />
+          <div style="margin-left:10px;">1. 点击下方“复制地址”（多点几次）</div>
+          <div style="margin-left:10px;">2. 打开抖音APP，显示“检测到链接”，点击“前往”</div>
+          <div style="margin-left:10px;">3. {{getTaskText()}}</div>
+          <div style="margin-left:10px;">4. 截图并上传</div>
         </md-card-content>
       </md-card>
       <md-button
         id="copied"
         class="md-raised md-primary full-width"
         :data-clipboard-text="item.task_url"
-      >点击复制地址</md-button>
+      >复制地址</md-button>
       <md-button class="md-raised md-primary full-width" @click="startTask">开始任务</md-button>
     </div>
   </div>
@@ -38,6 +45,14 @@ export default {
   methods: {
     startTask() {
       starttask(this);
+    },
+    getTaskText(){
+      switch(this.item.task_type){
+        case '关注':
+          return '点击主播头像的小加号，直到加号消失'
+        default:
+          return ""
+      }
     }
   }
 };

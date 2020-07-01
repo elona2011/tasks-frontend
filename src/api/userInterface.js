@@ -13,20 +13,12 @@ export function gettask(self) {
         })
 }
 
-export function starttask(self) {
-    axios
+export function starttask(id, token) {
+    return axios
         .post("/api/starttask", {
-            id: self.$route.params.id,
-            token: self.$route.params.token
+            id,
+            token
         })
-        .then(res => {
-            if (res.data.code == 0) {
-                self.$router.push({
-                    name: "UserTaskDetail",
-                    params: { id: res.data.result, token: self.$route.params.token }
-                });
-            }
-        });
 }
 
 export function newtasks(self) {

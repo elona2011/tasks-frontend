@@ -3,18 +3,24 @@
     <div class="main-page" v-if="item.task_state==1">
       <md-card>
         <md-card-content>
-          <span
+          <!-- <span
             style="font-size: 20px;color:red;"
-          >{{item.task_type}}任务 {{getState(item.task_state)}}</span>
-          <br />链接：
+          >{{item.task_type}}任务 {{getState(item.task_state)}}</span>-->
+          抖音链接：
           <span style="color:#448aff;">{{item.task_url}}</span>
+          <br />任务步骤：
+          <br />
+          <div style="margin-left:10px;">1. 点击下方“复制视频地址”（多点几次）</div>
+          <div style="margin-left:10px;">2. 打开抖音APP，显示“检测到链接”，点击“前往”</div>
+          <div style="margin-left:10px;">3. {{getTaskText()}}</div>
+          <div style="margin-left:10px;">4. 截图当前屏幕并上传，然后提交任务</div>
         </md-card-content>
       </md-card>
       <md-button
         id="copied"
         class="md-raised md-primary full-width"
         :data-clipboard-text="item.task_url"
-      >点击复制地址</md-button>
+      >复制视频地址</md-button>
       <md-field :class="getValidationClass('imageCut')">
         <label>点击上传截图</label>
         <md-file v-model="imageCut" @md-change="onFileUpload($event)" />
@@ -87,6 +93,18 @@ export default {
     usertask(this);
   },
   methods: {
+    getTaskText() {
+      switch (this.item.task_type) {
+        case "关注":
+          return "点击主播头像的小加号，直到加号消失";
+        case "点赞":
+          return "双击屏幕，看到小红心变红";
+        case "评论":
+          return "点击三个点的评论按钮，进行评论（不少于10个字），并至少点赞3个他人评论";
+        default:
+          return "";
+      }
+    },
     getValidationClass(fieldName) {
       const field = this.$v[fieldName];
 

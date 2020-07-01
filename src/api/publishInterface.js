@@ -48,10 +48,11 @@ export function publishTaskView(id, token) {
         })
 }
 
-export function publishCheck(id, pass, token) {
+export function publishCheck(id, table_publish_id, pass, token) {
     return axios
         .post("/api/publishCheck", {
             id,
+            table_publish_id,
             pass,
             token,
         })
