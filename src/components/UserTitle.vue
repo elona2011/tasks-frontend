@@ -1,7 +1,7 @@
 <template>
   <md-toolbar>
     <h3 class="md-title">{{title}}</h3>
-    <md-button class="md-primary" @click="switchPosition" v-if="isShow">切换身份</md-button>
+    <md-button class="md-primary" @click="switchPosition" v-if="isShow">{{buttonName}}</md-button>
   </md-toolbar>
 </template>
 
@@ -10,10 +10,14 @@ export default {
   name: "UserTitle",
   props: {
     title: String,
+    buttonName: {
+      type: String,
+      required: true
+    },
     isShow: {
       type: Boolean,
       default: true
-    //   default: false
+      //   default: false
     }
   },
   methods: {
