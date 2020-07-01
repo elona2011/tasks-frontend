@@ -2,7 +2,7 @@
   <div class="main-scroll">
     <div class="main-page">
       <md-card v-for="item in items" :key="item.id">
-        <md-card-content @click.native="viewPublish(item)">
+        <md-card-content>
           状态：
           <span style="color:red;">{{getState(item.state)}}</span>
           <br />链接：
@@ -12,6 +12,9 @@
           <span style="margin-right:10px;">点赞{{item.thumb_finish_num}}/{{item.thumb_num}}</span>
           <span style="margin-right:10px;">评论{{item.comment_finish_num}}/{{item.comment_num}}</span>
           <md-progress-bar md-mode="determinate" :md-value="getProgress(item)"></md-progress-bar>
+          <div style="display:flex;flex-direction: row-reverse;">
+            <md-button class="md-raised md-primary" @click="taskCheck(item)">审核任务</md-button>
+          </div>
         </md-card-content>
       </md-card>
     </div>
@@ -30,6 +33,12 @@ export default {
     publishMy(this);
   },
   methods: {
+    taskCheck(item) {
+      this.$router.push({
+        name: "PublishCheck",
+        params: { id: item.id, token: this.$route.params.token }
+      });
+    },
     publishAgain() {
       this.$router.push({
         name: "publish",

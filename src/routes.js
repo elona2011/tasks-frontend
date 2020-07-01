@@ -2,6 +2,7 @@ import PublishMenu from './components/PublishMenu'
 import PublishNew from './components/PublishNew'
 import PublishDetail from './components/PublishDetail'
 import PublishMy from './components/PublishMy'
+import PublishCheck from './components/PublishCheck'
 import PublishPay from './components/PublishPay'
 import PublishTaskSuccess from './components/PublishTaskSuccess'
 import FillDyid from './components/FillDyid'
@@ -33,6 +34,7 @@ const routes = [
             { name: 'PublishPay', path: 'pay/:token', component: PublishPay, meta: { title: '充值' } },
             { name: 'PublishTaskSuccess', path: 'success/:token', component: PublishTaskSuccess, meta: { title: '发布成功' } },
             { name: 'PublishDetail', path: 'detail/:id/:token', component: PublishDetail, meta: { title: '发布详情' } },
+            { name: 'PublishCheck', path: 'check/:id/:token', component: PublishCheck, meta: { title: '任务审核' } },
         ]
     },
     {

@@ -15,10 +15,11 @@
         class="md-raised md-primary full-width"
         :data-clipboard-text="item.task_url"
       >点击复制地址</md-button>
-      <md-field>
-        <label>点击上传视频</label>
+      <md-field :class="getValidationClass('imageCut')">
+        <label>点击上传截图</label>
         <md-file v-model="imageCut" @md-change="onFileUpload($event)" />
-        <!-- <span class="md-error" v-if="!$v.form.file.required">请上传视频文件</span> -->
+        <span class="md-error" v-if="!$v.imageCut.required">请上传图片文件</span>
+        <span class="md-error" v-if="!$v.imageCut.testImg">请上传图片文件</span>
       </md-field>
       <md-button class="md-raised md-primary full-width" @click="updateTask">提交任务</md-button>
     </div>
@@ -50,22 +51,51 @@
 </template>
 
 <script>
-import { usertask, updatetask, uploadImg } from "../api/userInterface";
+import { usertask, updatetask } from "../api/userInterface";
 const ClipboardJS = require("clipboard");
+import { required } from "vuelidate/lib/validators";
+import { validationMixin } from "vuelidate";
 
+const testImg = e => {
+  if (e instanceof Event) {
+    let file = e.target.files[0];
+    if (file.type.match(/image.*/)) {
+      return true;
+    }
+  } else {
+    return true;
+  }
+};
 export default {
   name: "UserTaskDetail",
+  mixins: [validationMixin],
   data: () => ({
     item: {
       task_state: 0
     },
-    imageCut: null
+    imageCut: null,
+    imageNew: null
   }),
+  validations: {
+    imageCut: {
+      required,
+      testImg
+    }
+  },
   mounted() {
     new ClipboardJS("#copied");
     usertask(this);
   },
   methods: {
+    getValidationClass(fieldName) {
+      const field = this.$v[fieldName];
+
+      if (field) {
+        return {
+          "md-invalid": field.$invalid && field.$dirty
+        };
+      }
+    },
     viewTask() {
       console.log(11);
       this.$router.push({
@@ -87,17 +117,52 @@ export default {
       return "";
     },
     updateTask() {
-      updatetask(this);
-    },
-    onFileUpload(e) {
-      if (e.length) {
-        this.imageCut = e[0];
+      this.$v.imageCut.$touch();
+      if (!this.$v.$invalid) {
         let data = new FormData();
-        data.set("file", this.imageCut);
+        data.set("img", this.imageNew);
         data.set("id", this.$route.params.id);
         data.set("token", this.$route.params.token);
-
-        uploadImg(data);
+        updatetask(data).then(res => {
+          if (res.data.code == 0) {
+            this.item = res.data.result;
+          }
+        });
+      }
+    },
+    onFileUpload(e) {
+      this.$v.imageCut.$touch();
+      if (!this.$v.$invalid) {
+        if (e.length) {
+          let file = e[0];
+          const fileName = file.name;
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = event => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = e => {
+              let w = 200;
+              let h = (e.target.height * w) / e.target.width;
+              const elem = document.createElement("canvas");
+              elem.width = w;
+              elem.height = h;
+              const ctx = elem.getContext("2d");
+              ctx.drawImage(img, 0, 0, w, h);
+              ctx.canvas.toBlob(
+                blob => {
+                  this.imageNew = new File([blob], fileName, {
+                    type: "image/jpeg",
+                    lastModified: Date.now()
+                  });
+                },
+                "image/jpeg",
+                1
+              );
+            };
+          };
+          reader.onerror = error => console.log(error);
+        }
       }
     }
   }

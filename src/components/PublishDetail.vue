@@ -51,6 +51,7 @@
         @click="editPublishTask(item.state==1?3:1)"
         :disabled="item.state==2"
       >{{item.state==1?'暂停任务':'开始任务'}}</md-button>
+      <md-button class="md-raised md-primary full-width" @click="taskCheck">审核任务</md-button>
     </form>
   </div>
 </template>
@@ -60,7 +61,6 @@ import { validationMixin } from "vuelidate";
 import { required, between } from "vuelidate/lib/validators";
 import { getPublishById, editPublishTask } from "../api/publishInterface";
 
-const axios = require("axios");
 const dy_regex = v => {
   let r = /.+http.+\/\/.+\/.+/.test(v);
   return r;
@@ -105,6 +105,12 @@ export default {
     getPublishById(this);
   },
   methods: {
+    taskCheck() {
+      this.$router.push({
+        name: "PublishCheck",
+        params: { id: this.$route.params.id, token: this.$route.params.token }
+      });
+    },
     editPublishTask(state) {
       editPublishTask(
         this.$route.params.id,
@@ -123,28 +129,6 @@ export default {
         return {
           "md-invalid": field.$invalid && field.$dirty
         };
-      }
-    },
-    validateUser() {
-      this.$v.$touch();
-
-      if (!this.$v.$invalid) {
-        axios
-          .post("/api/publish", {
-            videoUrl: this.form.videoUrl,
-            follow: this.form.follow,
-            comment: this.form.comment,
-            thumb: this.form.thumb,
-            token: this.$route.params.token
-          })
-          .then(res => {
-            if (res.data.code == 0) {
-              this.$router.push({
-                name: "publishsuccess",
-                params: { token: this.$route.params.token }
-              });
-            }
-          });
       }
     }
   }

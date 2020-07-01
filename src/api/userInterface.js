@@ -66,17 +66,13 @@ export function usertask(self) {
         });
 }
 
-export function updatetask(self) {
-    axios
-        .post("/api/updatetask", {
-            id: self.$route.params.id,
-            token: self.$route.params.token
+export function updatetask(data) {
+    return axios
+        .request({
+            url: '/api/updatetask',
+            method: "post",
+            data
         })
-        .then(res => {
-            if (res.data.code == 0) {
-                self.item = res.data.result;
-            }
-        });
 }
 
 export function uploadImg(data) {

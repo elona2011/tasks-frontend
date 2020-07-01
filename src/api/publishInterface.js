@@ -40,3 +40,21 @@ export function editPublishTask(id, token, state) {
         })
 }
 
+export function publishTaskView(id, token) {
+    return axios
+        .post("/api/publishTaskView", {
+            id,
+            token,
+        })
+}
+
+export function publishCheck(id, pass, token) {
+    return axios
+        .post("/api/publishCheck", {
+            id,
+            pass,
+            token,
+        })
+}
+
+
