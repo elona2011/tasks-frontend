@@ -191,7 +191,7 @@ export default {
       return this.isMoneyShort ? "点我充值" : "";
     }
   },
-  mounted() {
+  activated: function() {
     getUserMoney(this).then(res => {
       if (res.data.code == 0) {
         this.item = res.data.result;

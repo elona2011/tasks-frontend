@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <md-progress-spinner md-mode="indeterminate" class="center" v-if="loading"></md-progress-spinner>
+    <md-progress-spinner id="loading" md-mode="indeterminate" class="center" v-show="loading"></md-progress-spinner>
     <router-view></router-view>
   </div>
 </template>
@@ -33,9 +33,8 @@ body {
   color: #2c3e50;
   height: 100vh;
 }
-.md-progress-spinner.center {
+#loading.md-progress-spinner.center {
   position: fixed;
-  transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
   margin-top: -30px;
