@@ -116,13 +116,17 @@ export default {
                 console.log(res);
                 if (res.err_msg == "get_brand_wcpay_request:ok") {
                   alert("充值成功");
+                  this.$router.push({
+                    name: "PublishNew",
+                    params: { token: this.$route.params.token }
+                  });
                 } else {
                   alert("充值失败");
                 }
                 getUserMoney(this).then(res => {
                   if (res.data.code == 0) {
                     this.item = res.data.result;
-                    this.sending = false
+                    this.sending = false;
                   }
                 });
               }
