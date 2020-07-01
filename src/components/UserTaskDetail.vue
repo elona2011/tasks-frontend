@@ -12,7 +12,7 @@
           <br />
           <div style="margin-left:10px;">1. 点击下方“复制视频地址”（多点几次）</div>
           <div style="margin-left:10px;">2. 打开抖音APP，显示“检测到链接”，点击“前往”</div>
-          <div style="margin-left:10px;">3. {{getTaskText()}}</div>
+          <div style="margin-left:10px;color:red;">3. {{getTaskText()}}</div>
           <div style="margin-left:10px;">4. 截图当前屏幕并上传，然后提交任务</div>
         </md-card-content>
       </md-card>
@@ -39,6 +39,13 @@
           <span style="color:#448aff;">{{item.task_url}}</span>
         </md-card-content>
         <div class="money">+0.1元</div>
+      </md-card>
+      <md-card v-if="item.task_img">
+        <md-card-content>
+          <div>
+            <img :src="item.task_img" alt />
+          </div>
+        </md-card-content>
       </md-card>
     </div>
     <div class="main-page" v-if="item.task_state==3">
