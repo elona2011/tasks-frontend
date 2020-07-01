@@ -6,10 +6,10 @@
         <div style="display: flex;justify-content: space-around;">
           <md-card-content>
             <span style="font-size: 20px;">
-              {{item.task_type}}任务：
+              {{item.task_type}}：
               <span style="color:red;">剩余{{item.task_num-item.task_used_num}}</span>
             </span>
-            <br />任务链接：
+            <br />
             <span style="color:#448aff;">{{item.task_url}}</span>
           </md-card-content>
           <div class="money">+{{item.task_money/100}}元</div>

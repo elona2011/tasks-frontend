@@ -36,7 +36,7 @@
             :disabled="sending"
           />
           <span class="md-error" v-if="!$v.form.money.required">请填写提现金额</span>
-          <span class="md-error" v-else-if="!$v.form.money.between">填写1~5</span>
+          <span class="md-error" v-else-if="!$v.form.money.between">请填写1～{{item.money/100}}</span>
         </md-field>
         <md-button type="submit" class="md-raised md-primary full-width" :disabled="sending">提现</md-button>
       </form>
@@ -63,13 +63,15 @@ export default {
     sending: false,
     lastUser: null
   }),
-  validations: {
-    form: {
-      money: {
-        required,
-        between: between(0, 5)
+  validations() {
+    return {
+      form: {
+        money: {
+          required,
+          between: between(1, this.item.money / 100)
+        }
       }
-    }
+    };
   },
   mounted() {
     getUserMoney(this).then(res => {
