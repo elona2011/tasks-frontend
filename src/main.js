@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { MdButton, MdContent, MdToolbar, MdField, MdCard, MdBottomBar, MdProgress, MdList ,MdIcon} from 'vue-material/dist/components'
+import { MdButton, MdContent, MdToolbar, MdField, MdCard, MdBottomBar, MdProgress, MdList, MdIcon } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 // import UserMenu from './components/UserMenu'
@@ -8,6 +8,7 @@ import 'vue-material/dist/theme/default.css'
 // import PublishMenu from './components/PublishMenu'
 import { router } from "./routes";
 import VueRouter from 'vue-router'
+import { store } from "./store";
 
 Vue.use(MdButton)
 Vue.use(MdContent)
@@ -27,5 +28,6 @@ Vue.config.productionTip = false
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

@@ -2,7 +2,9 @@
   <div style="height:100vh;">
     <div class="phone-viewport">
       <user-title :title="title" />
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
       <md-bottom-bar md-sync-route class="bottom-bar">
         <md-bottom-bar-item
           class="my-menu"

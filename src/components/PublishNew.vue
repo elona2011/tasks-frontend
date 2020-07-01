@@ -125,7 +125,7 @@
             <span class="md-list-item-text">我的余额</span>
             <span class="md-list-item-text list-row" :class="{red:isMoneyShort}">
               {{item.money_view.toFixed(2)}}元
-              <i class="material-icons">error</i>
+              <i class="material-icons" v-if="isMoneyShort">error</i>
             </span>
             <span class="md-list-item-text">
               <router-link
@@ -137,7 +137,7 @@
         <md-button
           type="submit"
           class="md-raised md-primary full-width"
-          :disabled="isMoneyShort"
+          :disabled="isMoneyShort||sending"
         >提交任务</md-button>
       </form>
     </div>
@@ -245,6 +245,7 @@ export default {
       this.$v.$touch();
 
       if (!this.$v.$invalid) {
+        this.sending = true;
         axios
           .post("/api/publish", {
             videoUrl: this.form.videoUrl,
@@ -258,6 +259,7 @@ export default {
           })
           .then(res => {
             if (res.data.code == 0) {
+              this.sending = false;
               this.$router.push({
                 name: "PublishTaskSuccess",
                 params: { token: this.$route.params.token }

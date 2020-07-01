@@ -92,6 +92,7 @@ export default {
       this.$v.$touch();
 
       if (!this.$v.$invalid) {
+        this.sending = true;
         unifiedorder(this.$route.params.token, this.form.money * 100).then(
           res => {
             let {
@@ -121,6 +122,7 @@ export default {
                 getUserMoney(this).then(res => {
                   if (res.data.code == 0) {
                     this.item = res.data.result;
+                    this.sending = false
                   }
                 });
               }

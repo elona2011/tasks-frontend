@@ -15,7 +15,7 @@
           <div class="money">+{{item.task_money/100}}元</div>
         </div>
         <div style="display:flex;flex-direction: row-reverse;">
-          <md-button class="md-raised md-primary" @click="startTask(item)">开始任务</md-button>
+          <md-button class="md-raised md-primary" @click="startTask(item)" :disable="sending">开始任务</md-button>
         </div>
       </md-card>
     </div>
@@ -28,15 +28,19 @@ import { newtasks, starttask } from "../api/userInterface";
 export default {
   name: "UserTasksNew",
   data: () => ({
-    items: []
+    items: [],
+    sending: false
   }),
   mounted() {
     newtasks(this);
   },
   methods: {
     startTask(item) {
+      this.sending = true;
       starttask(item.id, this.$route.params.token).then(res => {
         if (res.data.code == 0) {
+          this.sending = false;
+
           this.$router.push({
             name: "UserTaskDetail",
             params: { id: res.data.result, token: this.$route.params.token }
