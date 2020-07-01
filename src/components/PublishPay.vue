@@ -71,7 +71,7 @@ export default {
       }
     }
   },
-  mounted() {
+  activated() {
     getUserMoney(this).then(res => {
       if (res.data.code == 0) {
         this.item = res.data.result;

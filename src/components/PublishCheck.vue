@@ -32,7 +32,7 @@ export default {
   data: () => ({
     items: []
   }),
-  mounted() {
+  activated() {
     publishTaskView(this.$route.params.id, this.$route.params.token).then(
       res => {
         this.items = res.data.result;

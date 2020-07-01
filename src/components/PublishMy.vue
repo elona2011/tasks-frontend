@@ -31,7 +31,7 @@ export default {
   data: () => ({
     items: []
   }),
-  mounted() {
+  activated() {
     publishMy(this);
   },
   methods: {
