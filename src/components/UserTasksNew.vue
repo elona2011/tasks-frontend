@@ -1,6 +1,7 @@
 <template>
   <div class="main-scroll">
     <div class="main-page">
+      <div v-if="!items.length">暂时没有新任务，过一会再来吧</div>
       <md-card v-for="item in items" :key="item.id">
         <md-card-content @click.native="viewTask(item)">
           <span style="font-size: 20px;">

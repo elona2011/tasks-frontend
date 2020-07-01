@@ -122,7 +122,7 @@
             <div class="list-icon">
               <i class="material-icons">attach_money</i>
             </div>
-            <span class="md-list-item-text">当前余额</span>
+            <span class="md-list-item-text">我的余额</span>
             <span class="md-list-item-text list-row" :class="{red:isMoneyShort}">
               {{item.money_view.toFixed(2)}}元
               <i class="material-icons">error</i>

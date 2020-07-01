@@ -1,6 +1,7 @@
 <template>
   <div class="main-scroll">
     <div class="main-page">
+      <div v-if="!items.length">点击左下角“新任务”去完成第一个任务吧</div>
       <md-card v-for="item in items" :key="item.id">
         <md-card-content @click.native="viewTask(item)">
           <span style="font-size: 20px;">{{item.task_type}}任务</span>

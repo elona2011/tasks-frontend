@@ -6,19 +6,19 @@
           <div class="md-title red">重要提示</div>
         </md-card-header>
 
-        <md-card-content>由于微信官方限制，每天最多提现1次，每次最少1元。余额不足1元时，不能提现。</md-card-content>
+        <md-card-content>微信官方限制，每天最多提现1次，每次最少1元。余额不足1元时，微信不让提现哦。</md-card-content>
       </md-card>
       <md-card>
         <md-list>
           <md-list-item>
             <md-icon md-src="attach_money-black-24dp.svg"></md-icon>
-            <span class="md-list-item-text">余额</span>
+            <span class="md-list-item-text">我的余额</span>
             <span class="md-list-item-text red">{{item.money/100}} 元</span>
             <md-icon></md-icon>
           </md-list-item>
           <md-list-item>
             <md-icon md-src="monetization_on-black-24dp.svg"></md-icon>
-            <span class="md-list-item-text">提现</span>
+            <span class="md-list-item-text">我已提现</span>
             <span class="md-list-item-text red">{{item.money_pay/100}} 元</span>
             <md-icon></md-icon>
           </md-list-item>

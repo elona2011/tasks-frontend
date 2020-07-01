@@ -6,13 +6,13 @@
           <div class="md-title red">重要提示</div>
         </md-card-header>
 
-        <md-card-content>余额用于发布任务</md-card-content>
+        <md-card-content>余额不足不能发布任务哦</md-card-content>
       </md-card>
       <md-card>
         <md-list>
           <md-list-item>
             <md-icon md-src="attach_money-black-24dp.svg"></md-icon>
-            <span class="md-list-item-text">余额</span>
+            <span class="md-list-item-text">我的余额</span>
             <span class="md-list-item-text red">{{item.money/100}} 元</span>
             <md-icon></md-icon>
           </md-list-item>

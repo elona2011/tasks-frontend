@@ -1,6 +1,8 @@
 <template>
   <div class="main-scroll">
     <div class="main-page">
+      <div v-if="!items.length">暂无发布</div>
+      <div v-if="!items.length">点击左下角“发布任务”发布第一个任务吧</div>
       <md-card v-for="item in items" :key="item.id">
         <md-card-content>
           状态：
