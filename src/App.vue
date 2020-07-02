@@ -2,6 +2,9 @@
   <div id="app">
     <md-progress-spinner id="loading" md-mode="indeterminate" class="center" v-show="loading"></md-progress-spinner>
     <router-view></router-view>
+    <md-snackbar :md-active.sync="showSnackbar" md-persistent>
+      <span>{{}}</span>
+    </md-snackbar>
   </div>
 </template>
 
@@ -14,6 +17,17 @@ export default {
   computed: {
     loading() {
       return this.$store.state.loading;
+    },
+    showSnackbar: {
+      get() {
+        return this.$store.state.showSnackbar;
+      },
+      set(v) {
+        this.$store.commit("setSnackbar", v);
+      }
+    },
+    getSnackbarContent(){
+      return this.$store.state.snackbarContent;
     }
   }
 };

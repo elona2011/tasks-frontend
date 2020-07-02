@@ -211,7 +211,7 @@ export default {
       },
       followPrice: {
         required,
-        between: between(0, 10)
+        between: between(0.05, 10)
       },
       comment: {
         required,
@@ -219,7 +219,7 @@ export default {
       },
       commentPrice: {
         required,
-        between: between(0, 10)
+        between: between(0.05, 10)
       },
       thumb: {
         required,
@@ -227,7 +227,7 @@ export default {
       },
       thumbPrice: {
         required,
-        between: between(0, 10)
+        between: between(0.05, 10)
       }
     }
   },
