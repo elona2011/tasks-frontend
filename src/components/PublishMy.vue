@@ -15,7 +15,7 @@
           <span style="margin-right:10px;">评论{{item.comment_finish_num}}/{{item.comment_num}}</span>
           <md-progress-bar md-mode="determinate" :md-value="getProgress(item)"></md-progress-bar>
           <div style="display:flex;flex-direction: row-reverse;">
-            <md-button class="md-raised md-primary" @click="taskCheck(item)">人工审核</md-button>
+            <md-button class="md-raised md-primary" @click="taskCheck(item)" :disabled="!item.state2num">{{item.state2num?'人工审核':'无审核任务'}}</md-button>
           </div>
         </md-card-content>
       </md-card>
@@ -32,7 +32,11 @@ export default {
     items: []
   }),
   activated() {
-    publishMy(this);
+    publishMy(this.$route.params.token).then(res => {
+      if (res.code == 0) {
+        this.items = res.result;
+      }
+    });
   },
   methods: {
     taskCheck(item) {

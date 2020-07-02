@@ -1,14 +1,9 @@
 import { axios } from "./axios";
 
-export function publishMy(self) {
-    axios
+export function publishMy(token) {
+    return axios
         .post("/api/publishMy", {
-            token: self.$route.params.token
-        })
-        .then(res => {
-            if (res.code == 0) {
-                self.items = res.result;
-            }
+            token
         })
 }
 
