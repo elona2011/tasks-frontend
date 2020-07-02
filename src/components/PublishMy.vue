@@ -15,7 +15,7 @@
           <span style="margin-right:10px;">评论{{item.comment_finish_num}}/{{item.comment_num}}</span>
           <md-progress-bar md-mode="determinate" :md-value="getProgress(item)"></md-progress-bar>
           <div style="display:flex;flex-direction: row-reverse;">
-            <md-button class="md-raised md-primary" @click="taskCheck(item)">审核任务</md-button>
+            <md-button class="md-raised md-primary" @click="taskCheck(item)">人工审核</md-button>
           </div>
         </md-card-content>
       </md-card>

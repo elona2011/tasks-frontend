@@ -32,26 +32,30 @@ export default {
     sending: false
   }),
   mounted() {
-    newtasks(this);
+    newtasks(this.$route.params.token).then(res => {
+      if (res.code == 0) {
+        this.items = res.result;
+      }
+    });
   },
   methods: {
     startTask(item) {
       this.sending = true;
       starttask(item.id, this.$route.params.token).then(res => {
-        if (res.data.code == 0) {
+        if (res.code == 0) {
           this.sending = false;
 
           this.$router.push({
-            name: "UserTaskDetail",
-            params: { id: res.data.result, token: this.$route.params.token }
+            name: "UserTaskStart",
+            params: { id: res.result, token: this.$route.params.token }
+          });
+        } else {
+          newtasks(this.$route.params.token).then(res => {
+            if (res.code == 0) {
+              this.items = res.result;
+            }
           });
         }
-      });
-    },
-    viewTask(item) {
-      this.$router.push({
-        name: "UserTaskStart",
-        params: { id: item.id, token: this.$route.params.token }
       });
     }
   }

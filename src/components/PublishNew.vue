@@ -193,8 +193,8 @@ export default {
   },
   activated() {
     getUserMoney(this).then(res => {
-      if (res.data.code == 0) {
-        this.item = res.data.result;
+      if (res.code == 0) {
+        this.item = res.result;
         this.item.money_view = this.item.money / 100;
       }
     });
@@ -258,7 +258,7 @@ export default {
             token: this.$route.params.token
           })
           .then(res => {
-            if (res.data.code == 0) {
+            if (res.code == 0) {
               this.sending = false;
               this.$router.push({
                 name: "PublishTaskSuccess",

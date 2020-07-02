@@ -10,12 +10,12 @@
             </div>
             <div class="columnflex">
               <span>审核状态：{{''}}</span>
-              <md-button class="md-raised md-primary" @click="checkYes(item)">通过审核</md-button>
+              <md-button class="md-raised md-primary" @click="checkYes(item)">通过</md-button>
               <md-button
                 class="md-raised md-accent"
                 @click="checkNo(item)"
                 style="margin:6px 8px;"
-              >拒绝审核</md-button>
+              >不通过</md-button>
             </div>
           </div>
         </md-card-content>
@@ -35,7 +35,7 @@ export default {
   activated() {
     publishTaskView(this.$route.params.id, this.$route.params.token).then(
       res => {
-        this.items = res.data.result;
+        this.items = res.result;
       }
     );
   },
@@ -47,7 +47,7 @@ export default {
         true,
         this.$route.params.token
       ).then(res => {
-        this.items = res.data.result;
+        this.items = res.result;
       });
     },
     checkNo(d) {
@@ -57,7 +57,7 @@ export default {
         false,
         this.$route.params.token
       ).then(res => {
-        this.items = res.data.result;
+        this.items = res.result;
       });
     },
     // viewPublish(item) {

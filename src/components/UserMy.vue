@@ -16,9 +16,24 @@
         </md-list-item>
       </md-list>
       <md-list>
-        <md-list-item @click="viewMyTask">
-          <md-icon md-src="fact_check-black-24dp.svg"></md-icon>
+        <md-list-item>
           <span class="md-list-item-text">我的任务</span>
+        </md-list-item>
+        <md-list-item @click="viewMyTask(1)">
+          <md-icon>assessment</md-icon>
+          <span class="md-list-item-text">进行中</span>
+          <span class="md-list-item-text red">{{money1/100}} 元</span>
+          <md-icon md-src="navigate_next-black-24dp.svg"></md-icon>
+        </md-list-item>
+        <md-list-item @click="viewMyTask(2)">
+          <md-icon>assignment</md-icon>
+          <span class="md-list-item-text">审核中</span>
+          <span class="md-list-item-text red">{{money2/100}} 元</span>
+          <md-icon md-src="navigate_next-black-24dp.svg"></md-icon>
+        </md-list-item>
+        <md-list-item @click="viewMyTask(3)">
+          <md-icon md-src="fact_check-black-24dp.svg"></md-icon>
+          <span class="md-list-item-text">已完成</span>
           <span class="md-list-item-text"></span>
           <md-icon md-src="navigate_next-black-24dp.svg"></md-icon>
         </md-list-item>
@@ -29,6 +44,7 @@
 
 <script>
 import { getUserMoney } from "../api/pay";
+import { mytasks } from "../api/userInterface";
 
 export default {
   name: "UserMy",
@@ -36,23 +52,39 @@ export default {
     item: {
       money: null,
       money_pay: null
-    }
+    },
+    money1: 0,
+    money2: 0
   }),
   mounted() {
     getUserMoney(this).then(res => {
-      if (res.data.code == 0) {
-        this.item = res.data.result;
+      if (res.code == 0) {
+        this.item = res.result;
         if (this.item.money < 100) {
           this.sending = true;
         }
       }
     });
+    mytasks(this.$route.params.token).then(res => {
+      if (res.code == 0) {
+        res.result
+          .filter(n => n.task_state == 1)
+          .forEach(n => {
+            this.money1 += n.task_money;
+          });
+        res.result
+          .filter(n => n.task_state == 2)
+          .forEach(n => {
+            this.money2 += n.task_money;
+          });
+      }
+    });
   },
   methods: {
-    viewMyTask() {
+    viewMyTask(state) {
       this.$router.push({
         name: "UserTasksMy",
-        params: { token: this.$route.params.token }
+        params: { state, token: this.$route.params.token }
       });
     },
     viewMyPay() {

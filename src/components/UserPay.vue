@@ -75,8 +75,8 @@ export default {
   },
   mounted() {
     getUserMoney(this).then(res => {
-      if (res.data.code == 0) {
-        this.item = res.data.result;
+      if (res.code == 0) {
+        this.item = res.result;
         if (this.item.money < 100) {
           this.sending = true;
         }
@@ -102,7 +102,7 @@ export default {
             this.$router.push({
               name: "UserPayDetail",
               params: {
-                id: res.data.result,
+                id: res.result,
                 token: this.$route.params.token
               }
             });

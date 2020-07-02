@@ -117,7 +117,7 @@ export default {
         this.$route.params.token,
         state
       ).then(res => {
-        if (res.data.code == 0) {
+        if (res.code == 0) {
           getPublishById(this);
         }
       });

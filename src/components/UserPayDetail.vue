@@ -22,7 +22,7 @@ export default {
     getUserPayDetail(this.$route.params.token, this.$route.params.id).then(
       res => {
         this.result =
-          res.data.result.result_code == "SUCCESS" ? "提现成功" : "提现失败";
+          res.result.result_code == "SUCCESS" ? "提现成功" : "提现失败";
       }
     );
   },

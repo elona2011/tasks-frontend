@@ -7,8 +7,8 @@ export function gettask(self) {
             token: self.$route.params.token
         })
         .then(res => {
-            if (res.data.code == 0) {
-                self.item = res.data.result;
+            if (res.code == 0) {
+                self.item = res.result;
             }
         })
 }
@@ -21,28 +21,18 @@ export function starttask(id, token) {
         })
 }
 
-export function newtasks(self) {
-    axios
+export function newtasks(token) {
+    return axios
         .post("/api/newtasks", {
-            token: self.$route.params.token
-        })
-        .then(res => {
-            if (res.data.code == 0) {
-                self.items = res.data.result;
-            }
+            token
         })
 }
 
-export function mytasks(self) {
-    axios
+export function mytasks(token) {
+    return axios
         .post("/api/mytasks", {
-            token: self.$route.params.token
+            token
         })
-        .then(res => {
-            if (res.data.code == 0) {
-                self.items = res.data.result;
-            }
-        });
 }
 
 export function usertask(self) {
@@ -52,8 +42,8 @@ export function usertask(self) {
             token: self.$route.params.token
         })
         .then(res => {
-            if (res.data.code == 0) {
-                self.item = res.data.result;
+            if (res.code == 0) {
+                self.item = res.result;
             }
         });
 }

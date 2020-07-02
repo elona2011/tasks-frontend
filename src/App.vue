@@ -3,7 +3,7 @@
     <md-progress-spinner id="loading" md-mode="indeterminate" class="center" v-show="loading"></md-progress-spinner>
     <router-view></router-view>
     <md-snackbar :md-active.sync="showSnackbar" md-persistent>
-      <span>{{}}</span>
+      <span>{{getSnackbarContent}}</span>
     </md-snackbar>
   </div>
 </template>

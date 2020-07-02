@@ -25,7 +25,13 @@ export default {
     items: []
   }),
   mounted() {
-    mytasks(this);
+    mytasks(this.$route.params.token).then(res => {
+      if (res.code == 0) {
+        this.items = res.result.filter(
+          n => n.task_state == this.$route.params.state
+        );
+      }
+    });
   },
   methods: {
     publishAgain() {

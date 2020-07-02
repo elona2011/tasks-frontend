@@ -44,7 +44,7 @@ const routes = [
         children: [
             { name: 'UserTasksNew', path: 'new/:token', component: UserTasksNew, meta: { title: '新任务' } },
             { name: 'UserMy', path: 'my/:token', component: UserMy, meta: { title: '我的' } },
-            { name: 'UserTasksMy', path: 'mytask/:token', component: UserTasksMy, meta: { title: '我的任务' } },
+            { name: 'UserTasksMy', path: 'mytask/:state/:token', component: UserTasksMy, meta: { title: '我的任务' } },
             { name: 'UserTaskStart', path: 'taskstart/:id/:token', component: UserTaskStart, meta: { title: '开始任务' } },
             { name: 'UserTaskDetail', path: 'taskdetail/:id/:token', component: UserTaskDetail, meta: { title: '任务详情' } },
             { name: 'UserPay', path: 'pay/:token', component: UserPay, meta: { title: '我的提现' } },

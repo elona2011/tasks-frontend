@@ -1,57 +1,138 @@
 <template>
   <div class="main-scroll">
-    <div class="main-page">
+    <div class="main-page" v-if="item.task_state==1">
       <md-card>
         <md-card-content>
-          视频地址：
+          抖音链接：
           <span style="color:#448aff;">{{item.task_url}}</span>
+          <br />任务步骤：
           <br />
-          {{item.task_type}}任务
-          <span
-            style="color:red;"
-          >剩余{{item.task_num-item.task_used_num-item.task_finish_num}}</span>
-          <br />
-          任务步骤：
-          <br />
-          <div style="margin-left:10px;">1. 点击下方“复制地址”（多点几次）</div>
+          <div style="margin-left:10px;">1. 点击下方“复制视频地址”（多点几次）</div>
           <div style="margin-left:10px;">2. 打开抖音APP，显示“检测到链接”，点击“前往”</div>
-          <div style="margin-left:10px;">3. {{getTaskText()}}</div>
-          <div style="margin-left:10px;">4. 截图并上传</div>
+          <div style="margin-left:10px;color:red;">3. {{getTaskText()}}</div>
+          <div style="margin-left:10px;">4. 截图当前屏幕并上传，然后提交任务</div>
         </md-card-content>
       </md-card>
       <md-button
         id="copied"
         class="md-raised md-primary full-width"
         :data-clipboard-text="item.task_url"
-      >复制地址</md-button>
-      <md-button class="md-raised md-primary full-width" @click="startTask">开始任务</md-button>
+      >复制视频地址</md-button>
+      <md-field :class="getValidationClass('imageCut')">
+        <label>点击上传截图</label>
+        <md-file v-model="imageCut" @md-change="onFileUpload($event)" />
+        <span class="md-error" v-if="!$v.imageCut.required">请上传图片文件</span>
+        <span class="md-error" v-if="!$v.imageCut.testImg">请上传图片文件</span>
+      </md-field>
+      <md-button class="md-raised md-primary full-width" @click="updateTask">提交任务</md-button>
     </div>
   </div>
 </template>
 
 <script>
-import { gettask, starttask } from "../api/userInterface";
+import { usertask, updatetask } from "../api/userInterface";
 const ClipboardJS = require("clipboard");
+import { required } from "vuelidate/lib/validators";
+import { validationMixin } from "vuelidate";
+import { getTaskContent } from "../services/utils";
 
+const testImg = e => {
+  if (e instanceof Event) {
+    let file = e.target.files[0];
+    if (file.type.match(/image.*/)) {
+      return true;
+    }
+  } else {
+    return true;
+  }
+};
 export default {
   name: "UserTaskDetail",
+  mixins: [validationMixin],
   data: () => ({
-    item: {}
+    item: {
+      task_state: 0
+    },
+    imageCut: null,
+    imageNew: null
   }),
+  validations: {
+    imageCut: {
+      required,
+      testImg
+    }
+  },
   mounted() {
     new ClipboardJS("#copied");
-    gettask(this);
+    usertask(this);
   },
   methods: {
-    startTask() {
-      starttask(this);
+    getTaskText() {
+      return getTaskContent(this.item.task_type);
     },
-    getTaskText(){
-      switch(this.item.task_type){
-        case '关注':
-          return '点击主播头像的小加号，直到加号消失'
-        default:
-          return ""
+    getValidationClass(fieldName) {
+      const field = this.$v[fieldName];
+
+      if (field) {
+        return {
+          "md-invalid": field.$invalid && field.$dirty
+        };
+      }
+    },
+    updateTask() {
+      this.$v.imageCut.$touch();
+      if (!this.$v.$invalid) {
+        let data = new FormData();
+        data.set("img", this.imageNew);
+        data.set("id", this.$route.params.id);
+        data.set("token", this.$route.params.token);
+        updatetask(data).then(res => {
+          debugger
+          if (res.code == 0) {
+            this.$router.push({
+              name: "UserTaskDetail",
+              params: {
+                id: this.$route.params.id,
+                token: this.$route.params.token
+              }
+            });
+          }
+        });
+      }
+    },
+    onFileUpload(e) {
+      this.$v.imageCut.$touch();
+      if (!this.$v.$invalid) {
+        if (e.length) {
+          let file = e[0];
+          const fileName = file.name;
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = event => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = e => {
+              let w = 200;
+              let h = (e.target.height * w) / e.target.width;
+              const elem = document.createElement("canvas");
+              elem.width = w;
+              elem.height = h;
+              const ctx = elem.getContext("2d");
+              ctx.drawImage(img, 0, 0, w, h);
+              ctx.canvas.toBlob(
+                blob => {
+                  this.imageNew = new File([blob], fileName, {
+                    type: "image/jpeg",
+                    lastModified: Date.now()
+                  });
+                },
+                "image/jpeg",
+                1
+              );
+            };
+          };
+          reader.onerror = error => console.log(error);
+        }
       }
     }
   }
@@ -60,6 +141,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.money {
+  width: 80px;
+  font-size: 20px;
+  color: red;
+  align-self: center;
+  flex-shrink: 0;
+}
 .md-content {
   width: 100%;
   height: 150px;
@@ -71,6 +159,8 @@ export default {
   margin-bottom: 10px;
   word-break: break-all;
   text-align: left;
+  display: flex;
+  justify-content: space-around;
 }
 .main-scroll {
   height: 100vh;

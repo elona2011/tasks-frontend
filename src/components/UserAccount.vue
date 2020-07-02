@@ -82,7 +82,7 @@ export default {
           })
           .then(res => {
             console.log(res);
-            if (res.data.code == 0) {
+            if (res.code == 0) {
               this.$router.push({
                 name: "UserAccountSuccess",
                 params: { token: this.$route.params.token }

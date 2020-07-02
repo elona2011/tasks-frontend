@@ -6,8 +6,8 @@ export function publishMy(self) {
             token: self.$route.params.token
         })
         .then(res => {
-            if (res.data.code == 0) {
-                self.items = res.data.result;
+            if (res.code == 0) {
+                self.items = res.result;
             }
         })
 }
@@ -19,8 +19,8 @@ export function getPublishById(self) {
             token: self.$route.params.token
         })
         .then(res => {
-            if (res.data.code == 0) {
-                self.item = res.data.result;
+            if (res.code == 0) {
+                self.item = res.result;
                 if (self.item) {
                     self.item.state_cn = self.item.state == 1 ? '进行中' : (self.item.state == 2 ? '已完成' : '暂停中')
                     self.item.follow_all = self.item.follow_finish_num + '/' + self.item.follow_num
