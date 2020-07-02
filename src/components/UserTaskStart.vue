@@ -87,7 +87,6 @@ export default {
         data.set("id", this.$route.params.id);
         data.set("token", this.$route.params.token);
         updatetask(data).then(res => {
-          debugger
           if (res.code == 0) {
             this.$router.push({
               name: "UserTaskDetail",

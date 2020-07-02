@@ -54,10 +54,17 @@ export default {
       return "";
     },
     viewTask(item) {
-      this.$router.push({
-        name: "UserTaskDetail",
-        params: { id: item.id, token: this.$route.params.token }
-      });
+      if (item.task_state == 1) {
+        this.$router.push({
+          name: "UserTaskStart",
+          params: { id: item.id, token: this.$route.params.token }
+        });
+      } else {
+        this.$router.push({
+          name: "UserTaskDetail",
+          params: { id: item.id, token: this.$route.params.token }
+        });
+      }
     }
   }
 };
