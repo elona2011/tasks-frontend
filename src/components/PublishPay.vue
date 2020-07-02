@@ -73,8 +73,8 @@ export default {
   },
   activated() {
     getUserMoney(this).then(res => {
-      if (res.data.code == 0) {
-        this.item = res.data.result;
+      if (res.code == 0) {
+        this.item = res.result;
       }
     });
   },
@@ -101,14 +101,14 @@ export default {
               nonceStr,
               signType,
               paySign
-            } = res.data.result;
+            } = res.result;
             window.WeixinJSBridge.invoke(
               "getBrandWCPayRequest",
               {
                 appId, //公众号名称，由商户传入
                 timeStamp, //时间戳，自1970年以来的秒数
                 nonceStr, //随机串
-                package: res.data.result.package,
+                package: res.result.package,
                 signType, //微信签名方式：
                 paySign //微信签名
               },
@@ -124,8 +124,8 @@ export default {
                   alert("充值失败");
                 }
                 getUserMoney(this).then(res => {
-                  if (res.data.code == 0) {
-                    this.item = res.data.result;
+                  if (res.code == 0) {
+                    this.item = res.result;
                     this.sending = false;
                   }
                 });

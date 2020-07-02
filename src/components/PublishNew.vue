@@ -26,7 +26,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.followPrice.required">请填写奖励</span>
-              <span class="md-error" v-else-if="!$v.form.followPrice.maxlength">填写错误</span>
+              <span class="md-error" v-else-if="!$v.form.followPrice.between">填写错误</span>
             </md-field>
           </div>
           <div class="md-layout-item">
@@ -41,7 +41,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.follow.required">请填写关注数</span>
-              <span class="md-error" v-else-if="!$v.form.follow.maxlength">填写错误</span>
+              <span class="md-error" v-else-if="!$v.form.follow.between">填写错误</span>
             </md-field>
           </div>
         </div>
@@ -58,7 +58,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.commentPrice.required">请填写奖励</span>
-              <span class="md-error" v-else-if="!$v.form.commentPrice.maxlength">填写错误</span>
+              <span class="md-error" v-else-if="!$v.form.commentPrice.between">填写错误</span>
             </md-field>
           </div>
           <div class="md-layout-item">
@@ -73,7 +73,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.comment.required">请填写评论数</span>
-              <span class="md-error" v-else-if="!$v.form.comment.maxlength">填写错误</span>
+              <span class="md-error" v-else-if="!$v.form.comment.between">填写错误</span>
             </md-field>
           </div>
         </div>
@@ -90,7 +90,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.thumbPrice.required">请填写奖励</span>
-              <span class="md-error" v-else-if="!$v.form.thumbPrice.maxlength">填写错误</span>
+              <span class="md-error" v-else-if="!$v.form.thumbPrice.between">填写错误</span>
             </md-field>
           </div>
           <div class="md-layout-item">
@@ -105,7 +105,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.thumb.required">请填写点赞数</span>
-              <span class="md-error" v-else-if="!$v.form.thumb.maxlength">填写错误</span>
+              <span class="md-error" v-else-if="!$v.form.thumb.between">填写错误</span>
             </md-field>
           </div>
         </div>
