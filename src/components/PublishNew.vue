@@ -11,7 +11,7 @@
           <label for="videoUrl">视频中复制链接</label>
           <md-textarea name="videoUrl" v-model="form.videoUrl" :disabled="sending"></md-textarea>
           <span class="md-error" v-if="!$v.form.videoUrl.required">请复制视频地址</span>
-          <span class="md-error" v-if="!$v.form.videoUrl.dy_regex">请复制视频地址</span>
+          <span class="md-error" v-if="!$v.form.videoUrl.dy_regex">视频地址格式不对</span>
         </md-field>
         <div class="md-layout">
           <div class="md-layout-item">
@@ -26,7 +26,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.followPrice.required">请填写奖励</span>
-              <span class="md-error" v-else-if="!$v.form.followPrice.between">填写错误</span>
+              <span class="md-error" v-else-if="!$v.form.followPrice.between">请填写0.05~1</span>
             </md-field>
           </div>
           <div class="md-layout-item">
@@ -58,7 +58,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.commentPrice.required">请填写奖励</span>
-              <span class="md-error" v-else-if="!$v.form.commentPrice.between">填写错误</span>
+              <span class="md-error" v-else-if="!$v.form.commentPrice.between">请填写0.05~1</span>
             </md-field>
           </div>
           <div class="md-layout-item">
@@ -90,7 +90,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.thumbPrice.required">请填写奖励</span>
-              <span class="md-error" v-else-if="!$v.form.thumbPrice.between">填写错误</span>
+              <span class="md-error" v-else-if="!$v.form.thumbPrice.between">请填写0.05~1</span>
             </md-field>
           </div>
           <div class="md-layout-item">
@@ -137,7 +137,7 @@
         <md-button
           type="submit"
           class="md-raised md-primary full-width"
-          :disabled="isMoneyShort||sending"
+          :disabled="isMoneyShort||sending||allTaskNumZero||!form.videoUrl"
         >提交任务</md-button>
       </form>
     </div>
@@ -160,11 +160,11 @@ export default {
   data: () => ({
     form: {
       videoUrl: null,
-      follow: 100,
+      follow: 0,
       followPrice: 0.05,
-      comment: 100,
+      comment: 0,
       commentPrice: 0.1,
-      thumb: 100,
+      thumb: 0,
       thumbPrice: 0.05
     },
     item: {
@@ -186,6 +186,10 @@ export default {
     },
     isMoneyShort() {
       return this.item.money_view < this.totalPrice;
+    },
+    allTaskNumZero() {
+      if (this.form.follow == 0 && this.form.comment == 0 && this.form.thumb == 0) return true;
+      else return false;
     },
     inCashTip() {
       return this.isMoneyShort ? "点我充值" : "";
