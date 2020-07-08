@@ -161,9 +161,9 @@ export default {
     form: {
       videoUrl: null,
       follow: 0,
-      followPrice: 0.05,
+      followPrice: 0.10,
       comment: 0,
-      commentPrice: 0.1,
+      commentPrice: 0.15,
       thumb: 0,
       thumbPrice: 0.05
     },
