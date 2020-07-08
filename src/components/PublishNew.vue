@@ -26,7 +26,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.followPrice.required">请填写奖励</span>
-              <span class="md-error" v-else-if="!$v.form.followPrice.between">请填写0.05~1</span>
+              <span class="md-error" v-else-if="!$v.form.followPrice.between">请填写0.10~1</span>
             </md-field>
           </div>
           <div class="md-layout-item">
@@ -58,7 +58,7 @@
                 :disabled="sending"
               />
               <span class="md-error" v-if="!$v.form.commentPrice.required">请填写奖励</span>
-              <span class="md-error" v-else-if="!$v.form.commentPrice.between">请填写0.05~1</span>
+              <span class="md-error" v-else-if="!$v.form.commentPrice.between">请填写0.15~1</span>
             </md-field>
           </div>
           <div class="md-layout-item">
