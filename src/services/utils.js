@@ -10,3 +10,27 @@ export const getTaskContent = t => {
             return "";
     }
 }
+
+export const testImg = e => {
+    if (e == null) {
+        return true
+    } else if (e instanceof Event) {
+        let file = e.target.files[0];
+        if (file.type.match(/image.*/)) {
+            return true;
+        }
+    } else if (typeof e == 'string') {
+        switch (e.slice(-3).toLocaleLowerCase()) {
+            case 'png':
+            case 'jpg':
+            case 'peg':
+                return true
+        }
+    }
+    return false
+};
+
+export const dy_regex = v => {
+    let r = /.+http.+\/\/.+\/.+/.test(v);
+    return r;
+};

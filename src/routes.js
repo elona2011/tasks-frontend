@@ -1,23 +1,25 @@
-import PublishMenu from './components/PublishMenu'
-import PublishNew from './components/PublishNew'
-import PublishDetail from './components/PublishDetail'
-import PublishMy from './components/PublishMy'
-import PublishCheck from './components/PublishCheck'
-import PublishPay from './components/PublishPay'
-import PublishTaskSuccess from './components/PublishTaskSuccess'
-import FillDyid from './components/FillDyid'
-import UserMenu from './components/UserMenu'
-import UserAccount from './components/UserAccount'
-import UserAccountSuccess from './components/UserAccountSuccess'
-import UserTasksNew from './components/UserTasksNew'
-import UserTasksMy from './components/UserTasksMy'
-import UserMy from './components/UserMy'
-import UserPay from './components/UserPay'
-import UserPayDetail from './components/UserPayDetail'
-import UserTaskStart from './components/UserTaskStart'
-import UserTaskDetail from './components/UserTaskDetail'
-import PageError from './components/PageError'
-// import MainPage from './components/MainPage'
+import PublishMenu from './pages/PublishMenu'
+import PublishNew from './pages/PublishNew'
+import PublishNewWx from './pages/PublishNewWx'
+import PublishNewType from './pages/PublishNewType'
+import PublishDetail from './pages/PublishDetail'
+import PublishMy from './pages/PublishMy'
+import PublishCheck from './pages/PublishCheck'
+import PublishPay from './pages/PublishPay'
+import PublishTaskSuccess from './pages/PublishTaskSuccess'
+import FillDyid from './pages/FillDyid'
+import UserMenu from './pages/UserMenu'
+import UserAccount from './pages/UserAccount'
+import UserAccountSuccess from './pages/UserAccountSuccess'
+import UserTasksNew from './pages/UserTasksNew'
+import UserTasksMy from './pages/UserTasksMy'
+import UserMy from './pages/UserMy'
+import UserPay from './pages/UserPay'
+import UserPayDetail from './pages/UserPayDetail'
+import UserTaskStart from './pages/UserTaskStart'
+import UserTaskDetail from './pages/UserTaskDetail'
+import PageError from './pages/PageError'
+// import MainPage from './pages/MainPage'
 import VueRouter from 'vue-router'
 
 const routes = [
@@ -29,7 +31,9 @@ const routes = [
         path: '/publish',
         component: PublishMenu,
         children: [
-            { name: 'PublishNew', path: 'new/:token', component: PublishNew, meta: { title: '发布任务' } },
+            { name: 'PublishNew', path: 'new/:token', component: PublishNew, meta: { title: '发布D音任务' } },
+            { name: 'PublishNewWx', path: 'newwx/:token', component: PublishNewWx, meta: { title: '发布视频号任务' } },
+            { name: 'PublishNewType', path: 'newtype/:token', component: PublishNewType, meta: { title: '发布任务' } },
             { name: 'PublishMy', path: 'my/:token', component: PublishMy, meta: { title: '我的发布' } },
             { name: 'PublishPay', path: 'pay/:token', component: PublishPay, meta: { title: '充值' } },
             { name: 'PublishTaskSuccess', path: 'success/:token', component: PublishTaskSuccess, meta: { title: '发布成功' } },

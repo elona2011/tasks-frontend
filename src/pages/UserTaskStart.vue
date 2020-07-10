@@ -34,18 +34,8 @@ import { usertask, updatetask } from "../api/userInterface";
 const ClipboardJS = require("clipboard");
 import { required } from "vuelidate/lib/validators";
 import { validationMixin } from "vuelidate";
-import { getTaskContent } from "../services/utils";
+import { getTaskContent, testImg } from "../services/utils";
 
-const testImg = e => {
-  if (e instanceof Event) {
-    let file = e.target.files[0];
-    if (file.type.match(/image.*/)) {
-      return true;
-    }
-  } else {
-    return true;
-  }
-};
 export default {
   name: "UserTaskDetail",
   mixins: [validationMixin],

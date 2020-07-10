@@ -8,7 +8,7 @@
       <md-bottom-bar md-sync-route class="bottom-bar">
         <md-bottom-bar-item
           class="my-menu"
-          :to="{name: 'PublishNew',params:{token:$route.params.token}}"
+          :to="{name: 'PublishNewType',params:{token:$route.params.token}}"
           exact
           md-label="发布任务"
           md-icon="fiber_new-black-24dp.svg"

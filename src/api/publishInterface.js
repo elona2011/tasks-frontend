@@ -1,5 +1,14 @@
 import { axios } from "./axios";
 
+export function publishWx(data) {
+    return axios
+        .request({
+            url: "/api/publish",
+            method: "post",
+            data
+        })
+}
+
 export function publishMy(token) {
     return axios
         .post("/api/publishMy", {

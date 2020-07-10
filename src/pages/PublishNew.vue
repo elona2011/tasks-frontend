@@ -148,11 +148,8 @@
 import { validationMixin } from "vuelidate";
 import { required, between } from "vuelidate/lib/validators";
 import { getUserMoney } from "../api/pay";
+import { dy_regex } from "../services/utils";
 const axios = require("axios");
-const dy_regex = v => {
-  let r = /.+http.+\/\/.+\/.+/.test(v);
-  return r;
-};
 
 export default {
   name: "PublishTask",
