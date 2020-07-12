@@ -5,17 +5,31 @@
       <div v-if="!items.length">点击左下角“发布任务”发布第一个任务吧</div>
       <md-card v-for="item in items" :key="item.id">
         <md-card-content>
-          状态：
-          <span style="color:red;">{{getState(item.state)}}</span>
-          <br />链接：
-          <span style="color:#448aff;">{{item.url}}</span>
-          <br />完成：
+          <div class="task-title" style="display:flex;justify-content:space-between;">
+            <span>{{item.task_dywx=='wx'?'视频号':"D音"}}</span>
+          </div>
+          <div>
+            状态：
+            <span style="color:red;">{{getState(item.state)}}</span>
+          </div>
+          <div v-if="item.url">
+            链接：
+            <span style="color:#448aff;">{{item.url}}</span>
+          </div>
+          <div v-if="item.video_name">
+            视频名：
+            <span style="color:#448aff;">{{item.video_name}}</span>
+          </div>完成：
           <span style="margin-right:10px;">关注{{item.follow_finish_num}}/{{item.follow_num}}</span>
           <span style="margin-right:10px;">点赞{{item.thumb_finish_num}}/{{item.thumb_num}}</span>
           <span style="margin-right:10px;">评论{{item.comment_finish_num}}/{{item.comment_num}}</span>
           <md-progress-bar md-mode="determinate" :md-value="getProgress(item)"></md-progress-bar>
           <div style="display:flex;flex-direction: row-reverse;">
-            <md-button class="md-raised md-primary" @click="taskCheck(item)" :disabled="!item.state2num">{{item.state2num?'人工审核':'无审核任务'}}</md-button>
+            <md-button
+              class="md-raised md-primary"
+              @click="taskCheck(item)"
+              :disabled="!item.state2num"
+            >{{item.state2num?'人工审核':'无审核任务'}}</md-button>
           </div>
         </md-card-content>
       </md-card>
@@ -83,6 +97,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.task-title {
+  font-size: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
 .md-progress-bar {
   margin-top: 10px;
 }

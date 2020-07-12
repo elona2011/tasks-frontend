@@ -14,7 +14,7 @@ export const getTaskContent = t => {
 export const getTaskContentWx = t => {
     switch (t) {
         case "关注":
-            return "点击橙色关注按钮，变成“取消关注”";
+            return "点击橙色关注按钮，确认变成“取消关注”";
         case "点赞":
             return "双击屏幕，看到小红心变红";
         case "评论":
