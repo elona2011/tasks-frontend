@@ -8,7 +8,7 @@
         style="flex-direction: column;"
       >
         <md-field :class="getValidationClass('videoUrl')">
-          <label for="videoUrl">视频中复制链接</label>
+          <label for="videoUrl">复制 视频链接 或 主页链接</label>
           <md-textarea name="videoUrl" v-model="form.videoUrl" :disabled="sending"></md-textarea>
           <span class="md-error" v-if="!$v.form.videoUrl.required">请复制视频地址</span>
           <span class="md-error" v-if="!$v.form.videoUrl.dy_regex">视频地址格式不对</span>
@@ -158,7 +158,7 @@ export default {
     form: {
       videoUrl: null,
       follow: 0,
-      followPrice: 0.10,
+      followPrice: 0.1,
       comment: 0,
       commentPrice: 0.15,
       thumb: 0,
@@ -185,7 +185,12 @@ export default {
       return this.item.money_view < this.totalPrice;
     },
     allTaskNumZero() {
-      if (this.form.follow == 0 && this.form.comment == 0 && this.form.thumb == 0) return true;
+      if (
+        this.form.follow == 0 &&
+        this.form.comment == 0 &&
+        this.form.thumb == 0
+      )
+        return true;
       else return false;
     },
     inCashTip() {
@@ -212,7 +217,7 @@ export default {
       },
       followPrice: {
         required,
-        between: between(0.10, 10)
+        between: between(0.1, 10)
       },
       comment: {
         required,
@@ -249,6 +254,7 @@ export default {
         this.sending = true;
         axios
           .post("/api/publish", {
+            type: "dy",
             videoUrl: this.form.videoUrl,
             follow: this.form.follow,
             followPrice: this.form.followPrice * 100,

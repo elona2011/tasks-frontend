@@ -13,7 +13,7 @@ export default {
   methods: {
     publishAgain() {
       this.$router.push({
-        name: "PublishNew",
+        name: "PublishNewType",
         params: { token: this.$route.params.token }
       });
     },

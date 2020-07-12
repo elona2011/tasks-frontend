@@ -2,20 +2,24 @@
   <div class="main-scroll">
     <div class="main-page">
       <div v-if="!items.length">暂时没有新任务，过一会再来吧</div>
-      <md-card v-for="item in items" :key="item.id">
-        <div style="display: flex;justify-content: space-around;">
-          <md-card-content>
-            <span style="font-size: 20px;">
-              {{item.task_type}}：
-              <span style="color:red;">剩余{{item.task_num-item.task_used_num}}</span>
-            </span>
-            <br />
-            <span style="color:#448aff;">{{item.task_url}}</span>
-          </md-card-content>
-          <div class="money">+{{item.task_money/100}}元</div>
+      <md-card v-for="item in items" :key="item.id" style="display:flex;">
+        <div style="width:40%;margin:0 auto;" v-if="item.qr_code">
+          <img :src="item.qr_code" alt />
         </div>
-        <div style="display:flex;flex-direction: row-reverse;">
-          <md-button class="md-raised md-primary" @click="startTask(item)" :disable="sending">开始任务</md-button>
+        <div style="padding:20px;flex:1;">
+          <div class="task-title" style="display:flex;justify-content:space-between;">
+            <span>{{item.task_dywx=='wx'?'视频号':"D音"}} {{item.task_type}}</span>
+          </div>
+          <div>
+            <span class="money">+{{item.task_money/100}}元</span>
+          </div>
+          <div>
+            <span style="color:#448aff;" v-if="item.task_url">{{item.task_url}}</span>
+            <span style="color:#448aff;" v-if="item.video_name">{{item.video_name}}</span>
+          </div>
+          <div style="display:flex;flex-direction: row-reverse;">
+            <md-button class="md-raised md-primary" @click="startTask(item)" :disable="sending" style="width:100%">开始任务</md-button>
+          </div>
         </div>
       </md-card>
     </div>
@@ -64,12 +68,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.task-title {
+  font-size: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
 .money {
-  width: 90px;
   font-size: 20px;
   color: red;
   align-self: center;
-  min-width: 80px;
 }
 .md-content {
   width: 100%;

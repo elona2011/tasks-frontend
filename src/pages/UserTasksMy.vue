@@ -3,14 +3,24 @@
     <div class="main-page">
       <div v-if="!items.length">点击左下角“新任务”去完成第一个任务吧</div>
       <md-card v-for="item in items" :key="item.id" @click.native="viewTask(item)">
-        <md-card-content>
-          <span style="font-size: 20px;">{{item.task_type}}任务</span>
-          <br />状态：
-          <span style="color:red;">{{getState(item.task_state)}}</span>
-          <br />链接：
-          <span style="color:#448aff;">{{item.task_url}}</span>
+        <md-card-content style="width: 100%;">
+          <div class="task-title" style="display:flex;justify-content:space-between;">
+            <span>{{item.task_dywx=='wx'?'视频号':"D音"}} {{item.task_type}}</span>
+            <span class="money">+{{item.task_money/100}}元</span>
+          </div>
+          <div>
+            状态：
+            <span style="color:red;">{{getState(item.task_state)}}</span>
+          </div>
+          <div v-if="item.task_url">
+            链接：
+            <span style="color:#448aff;">{{item.task_url}}</span>
+          </div>
+          <div v-if="item.video_name">
+            视频名：
+            <span style="color:#448aff;">{{item.video_name}}</span>
+          </div>
         </md-card-content>
-        <div class="money">+{{item.task_money/100}}元</div>
       </md-card>
     </div>
   </div>
@@ -72,12 +82,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.task-title {
+  font-size: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+}
 .money {
-  width: 90px;
   font-size: 20px;
   color: red;
   align-self: center;
-  min-width: 80px;
 }
 .md-content {
   width: 100%;

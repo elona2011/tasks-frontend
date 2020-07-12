@@ -1,18 +1,5 @@
 import { axios } from "./axios";
 
-// export function gettask(self) {
-//     axios
-//         .post("/api/gettask", {
-//             id: self.$route.params.id,
-//             token: self.$route.params.token
-//         })
-//         .then(res => {
-//             if (res.code == 0) {
-//                 self.item = res.result;
-//             }
-//         })
-// }
-
 export function starttask(id, token) {
     return axios
         .post("/api/starttask", {

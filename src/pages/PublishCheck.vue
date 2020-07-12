@@ -47,6 +47,7 @@ export default {
         true,
         this.$route.params.token
       ).then(res => {
+        alert('审核通过，该任务已完成')
         this.items = res.result;
       });
     },
@@ -57,6 +58,7 @@ export default {
         false,
         this.$route.params.token
       ).then(res => {
+        alert('审核不通过，该任务已退回重做')
         this.items = res.result;
       });
     },

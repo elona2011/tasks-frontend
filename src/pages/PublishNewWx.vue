@@ -13,7 +13,7 @@
           <span class="md-error" v-if="!$v.form.imageCut.required">请上传图片文件</span>
           <span class="md-error" v-if="!$v.form.imageCut.testImg">请上传图片文件</span>
         </md-field>
-        <img id="uploadImg" alt="未上传" v-if="form.imageCut" style="width:100%;"/>
+        <img id="uploadImg" alt="未上传" v-if="form.imageCut" style="width:50%;margin:0 auto;" />
         <md-field :class="getValidationClass('videoName')">
           <label for="videoName">复制视频名称</label>
           <md-input
@@ -219,40 +219,47 @@ export default {
       }
     });
   },
-  validations: {
-    form: {
-      videoName: {
-        required
-      },
-      follow: {
-        required,
-        between: between(0, 10000)
-      },
-      followPrice: {
-        required,
-        between: between(0.1, 10)
-      },
-      comment: {
-        required,
-        between: between(0, 10000)
-      },
-      commentPrice: {
-        required,
-        between: between(0.15, 10)
-      },
-      thumb: {
-        required,
-        between: between(0, 10000)
-      },
-      thumbPrice: {
-        required,
-        between: between(0.05, 10)
-      },
-      imageCut: {
-        required,
-        testImg
+  validations() {
+    return {
+      form: {
+        videoName: {
+          videoNameVal(v) {
+            if (parseInt(this.form.comment) || parseInt(this.form.thumb)) {
+              return v ? true : false;
+            }
+            return true;
+          }
+        },
+        follow: {
+          required,
+          between: between(0, 10000)
+        },
+        followPrice: {
+          required,
+          between: between(0.1, 10)
+        },
+        comment: {
+          required,
+          between: between(0, 10000)
+        },
+        commentPrice: {
+          required,
+          between: between(0.15, 10)
+        },
+        thumb: {
+          required,
+          between: between(0, 10000)
+        },
+        thumbPrice: {
+          required,
+          between: between(0.05, 10)
+        },
+        imageCut: {
+          required,
+          testImg
+        }
       }
-    }
+    };
   },
   methods: {
     change(e) {
@@ -310,6 +317,7 @@ export default {
       if (!this.$v.$invalid) {
         this.sending = true;
         let data = new FormData();
+        data.set("type", "wx");
         data.set("videoName", this.form.videoName);
         data.set("follow", this.form.follow);
         data.set("followPrice", this.form.followPrice * 100);
