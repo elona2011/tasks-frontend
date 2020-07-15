@@ -1,7 +1,7 @@
 <template>
   <div style="height:100vh;">
     <div class="phone-viewport">
-      <user-title :title="title"  buttonName="我要发布任务" />
+      <user-title :title="title"  buttonName="我要发布任务" :isShow="false" />
       <router-view></router-view>
       <md-bottom-bar md-sync-route class="bottom-bar">
         <md-bottom-bar-item
