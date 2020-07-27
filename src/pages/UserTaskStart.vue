@@ -17,6 +17,7 @@
         id="copied"
         class="md-raised md-primary full-width"
         :data-clipboard-text="item.task_url"
+        @click="jumpdy"
       >复制视频地址</md-button>
       <md-field :class="getValidationClass('imageCut')">
         <label>上传 任务完成 截图</label>
@@ -92,6 +93,12 @@ export default {
     usertask(this);
   },
   methods: {
+    jumpdy(){
+      let r = this.item.task_url.match(/http.+\//)
+      if(r.length){
+        window.Android.jump(r[0])
+      }
+    },
     getTaskText() {
       return getTaskContent(this.item.task_type);
     },
