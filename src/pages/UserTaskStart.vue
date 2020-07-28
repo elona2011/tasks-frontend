@@ -18,10 +18,10 @@
         class="md-raised md-primary full-width"
         :data-clipboard-text="item.task_url"
         @click="jumpdy"
-      >复制视频地址</md-button>
+      >跳转视频地址</md-button>
       <md-field :class="getValidationClass('imageCut')">
         <label>上传 任务完成 截图</label>
-        <md-file v-model="imageCut" @md-change="onFileUpload($event)" />
+        <md-file v-model="imageCut" @md-change="onFileUpload($event)" accept="image/*" />
         <span class="md-error" v-if="!$v.imageCut.required">请上传图片文件</span>
         <span class="md-error" v-if="!$v.imageCut.testImg">请上传图片文件</span>
       </md-field>
