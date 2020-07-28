@@ -1,7 +1,7 @@
 <template>
   <div style="height:100vh;">
     <div class="phone-viewport">
-      <user-title :title="title" buttonName="我要做任务" :isShow="false" />
+      <user-title :title="title" buttonName="我要做任务" :isShow="true" />
       <keep-alive>
         <router-view></router-view>
       </keep-alive>
