@@ -98,30 +98,33 @@ export default {
   },
   mounted() {
     new ClipboardJS("#copied");
-    usertask(this);
-    var img = new Image();
-    var c = document.createElement("canvas");
-    var ctx = c.getContext("2d");
-
-    img.onload = function() {
-      c.width = this.naturalWidth; // update canvas size to match image
-      c.height = this.naturalHeight;
-      ctx.drawImage(this, 0, 0); // draw in image
-      c.toBlob(function(blob) {
-        // get content as JPEG blob
-        // here the image is a blob
-        var reader = new window.FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function() {
-          var base64data = reader.result;
-          console.log("base64data", base64data);
-          window.Android.saveimage(base64data);
-          // send base64data string to android as a method param
+    usertask(this).then(()=>{
+      if(this.item.qr_code){
+        var img = new Image();
+        var c = document.createElement("canvas");
+        var ctx = c.getContext("2d");
+    
+        img.onload = function() {
+          c.width = this.naturalWidth; // update canvas size to match image
+          c.height = this.naturalHeight;
+          ctx.drawImage(this, 0, 0); // draw in image
+          c.toBlob(function(blob) {
+            // get content as JPEG blob
+            // here the image is a blob
+            var reader = new window.FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = function() {
+              var base64data = reader.result;
+              console.log("base64data", base64data);
+              window.Android.saveimage(base64data);
+              // send base64data string to android as a method param
+            };
+          });
         };
-      });
-    };
-    img.crossOrigin = ""; // if from different origin
-    img.src = this.item.qr_code;
+        img.crossOrigin = ""; // if from different origin
+        img.src = this.item.qr_code;
+      }
+    })
   },
   methods: {
     jumpdy() {
