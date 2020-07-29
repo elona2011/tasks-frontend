@@ -102,7 +102,7 @@ export default {
     jumpdy(){
       let r = this.item.task_url.match(/http.+\//)
       if(r.length){
-        window.Android.jump(r[0])
+        window.Android.jumpdy(r[0])
       }
     },
     jumpwx(){
