@@ -42,11 +42,13 @@
       </md-card>
       <md-card v-if="item.task_type=='点赞'||item.task_type=='评论'">
         <md-card-content>
-          <div class="task-title">{{item.task_type}}视频“{{item.video_name}}”</div>
-          任务步骤：
+          <div class="task-title">{{item.task_type}}视频“{{item.video_name}}”</div>任务步骤：
           <br />
           <div style="margin-left:10px;">1. 下方二维码已自动保存至相册，点击“跳转wx“，在微信中使用扫一扫打开相册中的二维码</div>
-          <div style="margin-left:10px;">2. 找到视频"<span style="color:red;">{{item.video_name}}</span>"，点击进入</div>
+          <div style="margin-left:10px;">
+            2. 找到视频"
+            <span style="color:red;">{{item.video_name}}</span>"，点击进入
+          </div>
           <div style="margin-left:10px;color:red;">3. {{getTaskContentWx()}}</div>
           <div style="margin-left:10px;">4. 截图当前屏幕并上传，然后提交任务</div>
           <div style="width:60%;margin:0 auto;">
@@ -97,40 +99,39 @@ export default {
   mounted() {
     new ClipboardJS("#copied");
     usertask(this);
+    var img = new Image();
+    var c = document.createElement("canvas");
+    var ctx = c.getContext("2d");
+
+    img.onload = function() {
+      c.width = this.naturalWidth; // update canvas size to match image
+      c.height = this.naturalHeight;
+      ctx.drawImage(this, 0, 0); // draw in image
+      c.toBlob(function(blob) {
+        // get content as JPEG blob
+        // here the image is a blob
+        var reader = new window.FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function() {
+          var base64data = reader.result;
+          console.log("base64data", base64data);
+          window.Android.saveimage(base64data);
+          // send base64data string to android as a method param
+        };
+      });
+    };
+    img.crossOrigin = ""; // if from different origin
+    img.src = this.item.qr_code;
   },
   methods: {
-    jumpdy(){
-      let r = this.item.task_url.match(/http.+\//)
-      if(r.length){
-        window.Android.jumpdy(r[0])
+    jumpdy() {
+      let r = this.item.task_url.match(/http.+\//);
+      if (r.length) {
+        window.Android.jumpdy(r[0]);
       }
     },
-    jumpwx(){
-      var img = new Image;
-      var c = document.createElement("canvas");
-      var ctx = c.getContext("2d");
-
-      img.onload = function() {
-        c.width = this.naturalWidth;     // update canvas size to match image
-        c.height = this.naturalHeight;
-        ctx.drawImage(this, 0, 0);       // draw in image
-        c.toBlob(function(blob) {        // get content as JPEG blob
-          // here the image is a blob
-          var reader = new window.FileReader();
-          reader.readAsDataURL(blob); 
-          reader.onloadend = function() {
-                var base64data = reader.result;    
-                console.log('base64data',base64data)
-          window.Android.jumpwx(base64data)            
-                // send base64data string to android as a method param
-  }
-          
-
-        });
-      };
-      img.crossOrigin = "";              // if from different origin
-      img.src = this.item.qr_code;
-      console.log('this.item.qr_code',this.item.qr_code)
+    jumpwx() {
+      window.Android.jumpwx();
     },
     getTaskText() {
       return getTaskContent(this.item.task_type);
@@ -208,9 +209,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.task-title{
+.task-title {
   font-size: 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.3);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   margin-bottom: 8px;
   padding-bottom: 8px;
 }
