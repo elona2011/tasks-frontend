@@ -23,7 +23,7 @@ export function mytasks(token) {
 }
 
 export function usertask(self) {
-    axios
+    return axios
         .post("/api/usertask", {
             id: self.$route.params.id,
             token: self.$route.params.token
