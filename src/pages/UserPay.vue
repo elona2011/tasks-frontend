@@ -68,7 +68,7 @@ export default {
       form: {
         money: {
           required,
-          between: between(1, this.item.money / 100)
+          between: between(0.1, this.item.money / 100)
         }
       }
     };
