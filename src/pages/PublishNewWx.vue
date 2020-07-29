@@ -11,7 +11,7 @@
           <label>点击上传 视频号二维码</label>
           <md-file v-model="form.imageCut" @md-change="onFileUpload($event)" />
           <span class="md-error" v-if="!$v.form.imageCut.required">请上传图片文件</span>
-          <span class="md-error" v-if="!$v.form.imageCut.testImg">请上传图片文件</span>
+          <!-- <span class="md-error" v-if="!$v.form.imageCut.testImg">请上传图片文件</span> -->
         </md-field>
         <img id="uploadImg" alt="未上传" v-if="form.imageCut" style="width:50%;margin:0 auto;" />
         <md-field :class="getValidationClass('videoName')">
@@ -160,7 +160,7 @@
 import { validationMixin } from "vuelidate";
 import { required, between } from "vuelidate/lib/validators";
 import { getUserMoney } from "../api/pay";
-import { testImg } from "../services/utils";
+// import { testImg } from "../services/utils";
 import { publishWx } from "../api/publishInterface";
 
 export default {
@@ -256,7 +256,7 @@ export default {
         },
         imageCut: {
           required,
-          testImg
+          // testImg
         }
       }
     };

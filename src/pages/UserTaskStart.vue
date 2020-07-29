@@ -23,7 +23,7 @@
         <label>上传 任务完成 截图</label>
         <md-file v-model="imageCut" @md-change="onFileUpload($event)" accept="image/*" />
         <span class="md-error" v-if="!$v.imageCut.required">请上传图片文件</span>
-        <span class="md-error" v-if="!$v.imageCut.testImg">请上传图片文件</span>
+        <!-- <span class="md-error" v-if="!$v.imageCut.testImg">请上传图片文件</span> -->
       </md-field>
       <md-button class="md-raised md-primary full-width" @click="updateTask">提交任务</md-button>
     </div>
@@ -66,7 +66,7 @@
         <label>上传 任务完成 截图</label>
         <md-file v-model="imageCut" @md-change="onFileUpload($event)" />
         <span class="md-error" v-if="!$v.imageCut.required">请上传图片文件</span>
-        <span class="md-error" v-if="!$v.imageCut.testImg">请上传图片文件</span>
+        <!-- <span class="md-error" v-if="!$v.imageCut.testImg">请上传图片文件</span> -->
       </md-field>
       <md-button class="md-raised md-primary full-width" @click="updateTask">提交任务</md-button>
     </div>
@@ -78,7 +78,7 @@ import { usertask, updatetask } from "../api/userInterface";
 const ClipboardJS = require("clipboard");
 import { required } from "vuelidate/lib/validators";
 import { validationMixin } from "vuelidate";
-import { getTaskContent, getTaskContentWx, testImg } from "../services/utils";
+import { getTaskContent, getTaskContentWx } from "../services/utils";
 
 export default {
   name: "UserTaskDetail",
@@ -93,7 +93,7 @@ export default {
   validations: {
     imageCut: {
       required,
-      testImg
+      // testImg
     }
   },
   mounted() {

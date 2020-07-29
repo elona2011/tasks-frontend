@@ -48,16 +48,16 @@ import { required } from "vuelidate/lib/validators";
 import { validationMixin } from "vuelidate";
 import { getTaskContent } from "../services/utils";
 
-const testImg = e => {
-  if (e instanceof Event) {
-    let file = e.target.files[0];
-    if (file.type.match(/image.*/)) {
-      return true;
-    }
-  } else {
-    return true;
-  }
-};
+// const testImg = e => {
+//   if (e instanceof Event) {
+//     let file = e.target.files[0];
+//     if (file.type.match(/image.*/)) {
+//       return true;
+//     }
+//   } else {
+//     return true;
+//   }
+// };
 export default {
   name: "UserTaskDetail",
   mixins: [validationMixin],
@@ -71,7 +71,7 @@ export default {
   validations: {
     imageCut: {
       required,
-      testImg
+      // testImg
     }
   },
   mounted() {
