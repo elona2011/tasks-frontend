@@ -106,7 +106,22 @@ export default {
       }
     },
     jumpwx(){
-      window.Android.jumpwx()
+      var img = new Image;
+      var c = document.createElement("canvas");
+      var ctx = c.getContext("2d");
+
+      img.onload = function() {
+        c.width = this.naturalWidth;     // update canvas size to match image
+        c.height = this.naturalHeight;
+        ctx.drawImage(this, 0, 0);       // draw in image
+        c.toBlob(function(blob) {        // get content as JPEG blob
+          // here the image is a blob
+          window.Android.jumpwx(blob)
+
+        });
+      };
+      img.crossOrigin = "";              // if from different origin
+      img.src = this.item.qr_code;
     },
     getTaskText() {
       return getTaskContent(this.item.task_type);
