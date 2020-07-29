@@ -116,12 +116,14 @@ export default {
         ctx.drawImage(this, 0, 0);       // draw in image
         c.toBlob(function(blob) {        // get content as JPEG blob
           // here the image is a blob
+          console.log('blob',blob)
           window.Android.jumpwx(blob)
 
         });
       };
       img.crossOrigin = "";              // if from different origin
       img.src = this.item.qr_code;
+      console.log('this.item.qr_code',this.item.qr_code)
     },
     getTaskText() {
       return getTaskContent(this.item.task_type);
