@@ -32,7 +32,7 @@
         <md-card-content>
           任务步骤：
           <br />
-          <div style="margin-left:10px;">1. 长按下方二维码，并选择"识别图中二维码"</div>
+          <div style="margin-left:10px;">1. 下方二维码已自动保存至相册，点击“跳转wx“，在微信中使用扫一扫打开相册中的二维码</div>
           <div style="margin-left:10px;color:red;">2. {{getTaskContentWx()}}</div>
           <div style="margin-left:10px;">3. 截图当前屏幕并上传，然后提交任务</div>
           <div style="width:60%;margin:0 auto;">
@@ -45,7 +45,7 @@
           <div class="task-title">{{item.task_type}}视频“{{item.video_name}}”</div>
           任务步骤：
           <br />
-          <div style="margin-left:10px;">1. 长按下方二维码，并选择"识别图中二维码"</div>
+          <div style="margin-left:10px;">1. 下方二维码已自动保存至相册，点击“跳转wx“，在微信中使用扫一扫打开相册中的二维码</div>
           <div style="margin-left:10px;">2. 找到视频"<span style="color:red;">{{item.video_name}}</span>"，点击进入</div>
           <div style="margin-left:10px;color:red;">3. {{getTaskContentWx()}}</div>
           <div style="margin-left:10px;">4. 截图当前屏幕并上传，然后提交任务</div>
