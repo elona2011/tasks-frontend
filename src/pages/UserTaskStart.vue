@@ -116,8 +116,15 @@ export default {
         ctx.drawImage(this, 0, 0);       // draw in image
         c.toBlob(function(blob) {        // get content as JPEG blob
           // here the image is a blob
-          console.log('blob',blob)
-          window.Android.jumpwx(blob)
+          var reader = new window.FileReader();
+          reader.readAsDataURL(blob); 
+          reader.onloadend = function() {
+                var base64data = reader.result;    
+                console.log('base64data',base64data)
+          window.Android.jumpwx(base64data)            
+                // send base64data string to android as a method param
+  }
+          
 
         });
       };
