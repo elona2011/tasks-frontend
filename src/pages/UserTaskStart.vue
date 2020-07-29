@@ -54,6 +54,12 @@
           </div>
         </md-card-content>
       </md-card>
+      <md-button
+        id="copied"
+        class="md-raised md-primary full-width"
+        :data-clipboard-text="item.task_url"
+        @click="jumpwx"
+      >跳转wx</md-button>
       <md-field :class="getValidationClass('imageCut')">
         <label>上传 任务完成 截图</label>
         <md-file v-model="imageCut" @md-change="onFileUpload($event)" />
@@ -98,6 +104,9 @@ export default {
       if(r.length){
         window.Android.jump(r[0])
       }
+    },
+    jumpwx(){
+      window.Android.jumpwx()
     },
     getTaskText() {
       return getTaskContent(this.item.task_type);
