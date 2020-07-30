@@ -72,7 +72,7 @@ export default {
     }
   },
   activated() {
-    getUserMoney(this).then(res => {
+    getUserMoney(this.$route.params.token).then(res => {
       if (res.code == 0) {
         this.item = res.result;
       }
@@ -145,7 +145,7 @@ export default {
             //     } else {
             //       alert("充值失败");
             //     }
-            //     getUserMoney(this).then(res => {
+            //     getUserMoney(this.$route.params.token).then(res => {
             //       if (res.code == 0) {
             //         this.item = res.result;
             //         this.sending = false;

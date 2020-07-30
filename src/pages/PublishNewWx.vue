@@ -212,7 +212,7 @@ export default {
     }
   },
   activated() {
-    getUserMoney(this).then(res => {
+    getUserMoney(this.$route.params.token).then(res => {
       if (res.code == 0) {
         this.item = res.result;
         this.item.money_view = this.item.money / 100;

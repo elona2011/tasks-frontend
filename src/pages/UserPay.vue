@@ -74,7 +74,7 @@ export default {
     };
   },
   mounted() {
-    getUserMoney(this).then(res => {
+    getUserMoney(this.$route.params.token).then(res => {
       if (res.code == 0) {
         this.item = res.result;
         if (this.item.money < 100) {
