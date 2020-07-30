@@ -97,12 +97,12 @@ export default {
           res => {
             console.log("unifiedorder", res);
             let r = {
-              appId: res.result.appId,
-              partnerId: res.result.partnerId,
-              prepayId: res.result.prepayId,
-              packageValue: res.result.packageValue,
-              nonceStr: res.result.nonceStr,
-              timeStamp: res.result.timeStamp,
+              appId: res.result.appid,
+              partnerId: res.result.partnerid,
+              prepayId: res.result.prepayid,
+              packageValue: res.result.package,
+              nonceStr: res.result.noncestr,
+              timeStamp: res.result.timestamp,
               sign: res.result.sign,
             };
             window.Android.pay(JSON.stringify(r));
