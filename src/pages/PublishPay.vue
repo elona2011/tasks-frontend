@@ -96,7 +96,16 @@ export default {
         unifiedorder(this.$route.params.token, this.form.money * 100).then(
           res => {
             console.log("unifiedorder", res);
-            window.Android.pay(JSON.stringify(res.result));
+            let r = {
+              appId: res.result.appId,
+              partnerId: res.result.partnerId,
+              prepayId: res.result.prepayId,
+              packageValue: res.result.packageValue,
+              nonceStr: res.result.nonceStr,
+              timeStamp: res.result.timeStamp,
+              sign: res.result.sign,
+            };
+            window.Android.pay(JSON.stringify(r));
             window.htxPayCallback = res => {
               console.log(res);
               if (res.err_msg == "get_brand_wcpay_request:ok") {
