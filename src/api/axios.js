@@ -21,9 +21,6 @@ axios.interceptors.response.use(function (response) {
             case 2:
                 store.commit('setSnackbarContent', `任务已被抢完，换个任务吧`)
                 break
-            case 3:
-                store.commit('setSnackbarContent', `任务没找到，换个任务吧`)
-                break
 
             default:
                 store.commit('setSnackbarContent', `${response.data.code}`)

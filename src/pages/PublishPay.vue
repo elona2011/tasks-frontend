@@ -95,42 +95,55 @@ export default {
         this.sending = true;
         unifiedorder(this.$route.params.token, this.form.money * 100).then(
           res => {
-            let {
-              appId,
-              timeStamp,
-              nonceStr,
-              signType,
-              paySign
-            } = res.result;
-            window.WeixinJSBridge.invoke(
-              "getBrandWCPayRequest",
-              {
-                appId, //公众号名称，由商户传入
-                timeStamp, //时间戳，自1970年以来的秒数
-                nonceStr, //随机串
-                package: res.result.package,
-                signType, //微信签名方式：
-                paySign //微信签名
-              },
-              res => {
-                console.log(res);
-                if (res.err_msg == "get_brand_wcpay_request:ok") {
-                  alert("充值成功");
-                  this.$router.push({
-                    name: "PublishNew",
-                    params: { token: this.$route.params.token }
-                  });
-                } else {
-                  alert("充值失败");
-                }
-                getUserMoney(this).then(res => {
-                  if (res.code == 0) {
-                    this.item = res.result;
-                    this.sending = false;
-                  }
+            console.log("unifiedorder", res);
+            window.Android.pay(JSON.stringify(res.result));
+            window.htxPayCallback = res => {
+              console.log(res);
+              if (res.err_msg == "get_brand_wcpay_request:ok") {
+                alert("充值成功");
+                this.$router.push({
+                  name: "PublishNew",
+                  params: { token: this.$route.params.token }
                 });
+              } else {
+                alert("充值失败");
               }
-            );
+              getUserMoney(this.$route.params.token).then(res => {
+                if (res.code == 0) {
+                  this.item = res.result;
+                  this.sending = false;
+                }
+              });
+            };
+            // window.WeixinJSBridge.invoke(
+            //   "getBrandWCPayRequest",
+            //   {
+            //     appId, //公众号名称，由商户传入
+            //     timeStamp, //时间戳，自1970年以来的秒数
+            //     nonceStr, //随机串
+            //     package: res.result.package,
+            //     signType, //微信签名方式：
+            //     paySign //微信签名
+            //   },
+            //   res => {
+            //     console.log(res);
+            //     if (res.err_msg == "get_brand_wcpay_request:ok") {
+            //       alert("充值成功");
+            //       this.$router.push({
+            //         name: "PublishNew",
+            //         params: { token: this.$route.params.token }
+            //       });
+            //     } else {
+            //       alert("充值失败");
+            //     }
+            //     getUserMoney(this).then(res => {
+            //       if (res.code == 0) {
+            //         this.item = res.result;
+            //         this.sending = false;
+            //       }
+            //     });
+            //   }
+            // );
           }
         );
       }

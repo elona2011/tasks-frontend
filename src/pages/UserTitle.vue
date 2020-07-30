@@ -1,7 +1,7 @@
 <template>
   <md-toolbar>
     <h3 class="md-title">{{title}}</h3>
-    <md-button class="md-primary" @click="switchPosition" v-if="isShow">{{buttonName}}</md-button>
+    <md-button class="md-primary" @click="switchPosition" v-if="isShow" style="color:#ffffff00;">{{buttonName}}</md-button>
   </md-toolbar>
 </template>
 

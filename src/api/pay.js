@@ -1,9 +1,9 @@
 import { axios } from "./axios";
 
-export function getUserMoney(self) {
+export function getUserMoney(token) {
     return axios
         .post("/pay/getUserMoney", {
-            token: self.$route.params.token
+            token,
         })
 }
 

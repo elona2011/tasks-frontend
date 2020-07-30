@@ -1,7 +1,7 @@
 <template>
   <div class="main-scroll">
     <div class="main-page">
-      <div style="color:red;margin:10px;">所有任务超72小时将会自动审核通过</div>
+      <div style="color:red;margin:10px;">所有任务超24小时将会自动审核通过</div>
       <md-card @click.native="jumpDy">
         <md-card-header>
           <div class="md-title">发布D音任务</div>
