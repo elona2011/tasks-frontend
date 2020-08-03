@@ -44,7 +44,7 @@
         <md-card-content>
           <div class="task-title">{{item.task_type}}视频“{{item.video_name}}”</div>任务步骤：
           <br />
-          <div style="margin-left:10px;">1. 下方二维码已自动保存至相册，点击“跳转wx“，在微信中使用扫一扫打开相册中的二维码</div>
+          <div style="margin-left:10px;">1. 下方二维码已自动保存至相册，点击“跳转wx“，在微信中使用扫一扫打开相册中的二维码（若保存失败，请手动截图）</div>
           <div style="margin-left:10px;">
             2. 找到视频"
             <span style="color:red;">{{item.video_name}}</span>"，点击进入
